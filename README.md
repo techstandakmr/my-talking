@@ -60,8 +60,8 @@
 - Actions: **edit**, **delete**, **unsend**, **reply**  
 - Additional: **forward**, **star**, **keep (saved)**, **disappearing timer**  
 - Share user/group/broadcast info as cards  
-- Block/unblock users  
-- Supports **dark mode**
+- Supports **auto-draft** for text and files  
+- Voice message recording
 
 ---
 
@@ -72,7 +72,8 @@
 - Promote/demote admins  
 - Exit group  
 - Update group info  
-- Control who can send messages
+- Control who can send messages  
+- **Invitation card** for users who have restricted group add permissions
 
 ---
 
@@ -91,6 +92,29 @@
 - Story delivery & view status  
 - Reply to stories  
 - Dark mode supported
+
+---
+
+## 📞 Call System
+
+- Voice calling  
+- Video calling  
+- View call logs  
+- Search and filter call history
+
+---
+
+## 🌗 Theme Mode
+
+- Full **Dark Mode** and **Light Mode** support across the app  
+- Saves user's theme preference automatically
+
+---
+
+## 🚫 User Blocking
+
+- Block any user to prevent them from messaging or seeing your profile  
+- Unblock users anytime from settings or profile
 
 ---
 
@@ -118,15 +142,15 @@ Each privacy setting supports:
 ## 🔍 Smart Search & Filter
 
 ### Chats
-- Search messages in any chat
+- Search messages in any chat  
+- Auto-draft search support
 
 ### Recent Chats
 - Search by `name`, `message`, `sender`, `receiver`  
 - Filter by `date`, `archived`, `recent`, `unseen`
 
 ### Calls
-- Search by `caller`, `callee`  
-- Filter by date
+- Search and filter by `caller`, `callee`, and `date`
 
 ### Stories
 - Search by sender
