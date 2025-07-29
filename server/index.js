@@ -35,8 +35,7 @@ import mongodbConnect from "./config/config.js";
 dotenv.config(); // Load environment variables from .env file
 const app = express();
 const corsOptions = {
-    // origin: process.env.FRONTEND_URL,  // Allowed frontend origin
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,  // Allowed frontend origin
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
@@ -68,20 +67,6 @@ const globalLimiter = rateLimit({
 app.use(globalLimiter); // Apply to all routes
 app.use("/api", allRoutes);
 
-const __filename = fileURLToPath(import.meta.url); // Get current file path
-const __dirname = path.dirname(__filename); // Get current directory path
-
-// Serve static files from uploads folder with CORS enabled
-app.use('/uploads', cors(corsOptions), express.static(path.join(__dirname, 'uploads')));
-
-const transporter = nodemailer.createTransport({
-    service: "gmail", // Use Gmail service for sending email
-    auth: {
-        user: process.env.EMAIL_USER, // Email user from env
-        pass: process.env.APA_PASSWORD, // Email app password from env
-    },
-});
-
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,     // Cloudinary cloud name from env
     api_key: process.env.CLOUDINARY_API_KEY,           // Cloudinary API key from env
@@ -89,26 +74,6 @@ cloudinary.config({
 });
 
 export const sendEmail = async (to, subject, html) => {
-    // console.log("sendEmail",to, subject, html);
-    // // Re-create nodemailer transporter for each sendEmail call
-    // const transporter = nodemailer.createTransport({
-    //     service: "gmail",
-    //     auth: {
-    //         user: process.env.EMAIL_USER,
-    //         pass: process.env.APA_PASSWORD,
-    //     },
-    // });
-    //     console.log("sendEmail2",transporter);
-    // const mailOptions = {
-    //     from: `"Chat App" <${process.env.EMAIL_USER}>`, // Sender email and name
-    //     to,      // Recipient email
-    //     subject, // Email subject
-    //     html,    // Email content as HTML
-    // };
-    // const info = await transporter.sendMail(mailOptions); // Send email
-    // console.log("INFO",info),mailOptions;
-
-
     try {
         const response = await axios.post(
             'https://api.brevo.com/v3/smtp/email',
@@ -149,47 +114,6 @@ const sendFeedback = async (req, resp) => {
     };
 };
 app.post("/api/feedback", jwtVerify, sendFeedback);
-export const generateAIImage = async (prompt) => {
-    console.log("prompt", prompt)
-    try {
-        // if (!prompt || typeof prompt !== "string" || prompt.trim().length === 0) {
-        //     throw new Error("Prompt is required and must be a non-empty string");
-        // }
-        // // const response = await openai.images.generate({
-        // //     // prompt,
-        // //     model: "dall-e-3", // OR "dall-e-2" if DALL·E 3 is unavailable to you
-        // //     prompt: prompt.trim(),
-        // //     n: 1,
-        // //     size: "1024x1024",
-        // // });
-        // const response = await openai.responses.create({
-        //     model: "gpt-4.1-mini",
-        //     input: prompt,
-        //     tools: [{ type: "image_generation" }],
-        // });
-        // const generatedImage = response.data.data[0];
-        // console.log("generatedImage", generatedImage)
-        const response = await openai.responses.create({
-            model: "gpt-4.1-mini",
-            input: "Generate an image of gray tabby cat hugging an otter with an orange scarf",
-            tools: [{ type: "image_generation" }],
-        });
-
-        // Save the image to a file
-        const imageData = response.output
-            .filter((output) => output.type === "image_generation_call")
-            .map((output) => output.result);
-
-        if (imageData.length > 0) {
-            const imageBase64 = imageData[0];
-            fs.writeFileSync("otter.png", Buffer.from(imageBase64, "base64"));
-        }
-        return { text: "Image generated" };
-    } catch (err) {
-        console.error('Error:', err);
-        return { err }
-    }
-}
 
 async function handleAIResponse(prompt, repliedChatID) {
     // Fetch all AI assistant chats from the database to use as conversation history
@@ -302,9 +226,6 @@ async function handleAIResponse(prompt, repliedChatID) {
             return result;
         };
 
-        // Log the full message object and plain content (for debugging)
-        console.log("TEXT", response.data.choices[0].message, response.data.choices[0].message.content);
-
         // Return parsed result in standard format
         return { type: "text", data: parseAIResponse(response.data.choices[0].message.content) };
 
@@ -347,10 +268,7 @@ async function fetchMetadata(textData) {
                         title: title === ogTitle ? title : ogTitle || title,
                         description: description === ogDescription ? description : ogDescription || description,
                         logo: metadata['og:image'] != '' ? metadata['og:image'] : metadata['image'],
-                        // image: metadata['image'],
-                        // 'og:image': metadata['og:image'],
                     };
-                    console.log('metadataHAI', filtered, metadata);
                     return {
                         ...parts,
                         ...filtered,
@@ -372,7 +290,6 @@ async function fetchMetadata(textData) {
                             description: m.title.toLowerCase() == 'error' ? url : m.description || '',
                             logo: m.image?.url || '',
                         };
-                        console.log("microlinkDATA", fallback, m)
                         return {
                             ...parts,
                             ...fallback,
@@ -389,102 +306,6 @@ async function fetchMetadata(textData) {
     return JSON.stringify(newTextData);
 };
 
-app.get('/urlmetadata2', async (req, res) => {
-    const { url } = req.query;
-    console.log("urlmetadata2 url", url);
-    if (!url) {
-        return res.status(400).json({ error: 'URL parameter is required.' });
-    }
-
-    const userAgent = new UserAgent();
-
-    try {
-        const metadata = await urlMetadata(url, {
-            headers: {
-                'User-Agent': userAgent.toString(),
-            },
-        });
-
-        // Extract specific fields
-        const filtered = {
-            source: 'url-metadata',
-            title: metadata['title'] || metadata['og:title'] || '',
-            description: metadata['description'] || metadata['og:description'] || '',
-            'og:title': metadata['og:title'] || '',
-            'og:description': metadata['og:description'] || '',
-            'og:image': metadata['og:image'] || '',
-            image: metadata['image'] || '',
-        };
-
-        console.log("urlmetadata2 metadata", filtered);
-        return res.json(filtered);
-
-    } catch (err) {
-        console.error('❌ url-metadata failed. Falling back to Microlink:', err.message);
-
-        // fallback to Microlink API
-        try {
-            const response = await fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`);
-            const data = await response.json();
-
-            if (data.status !== 'success') {
-                throw new Error(data?.data?.message || 'Microlink failed');
-            }
-
-            const m = data.data;
-
-            const fallback = {
-                source: 'microlink',
-                title: m.title || '',
-                description: m.description || '',
-                'og:title': m.title || '',
-                'og:description': m.description || '',
-                'og:image': m.image?.url || '',
-                image: m.image?.url || '',
-            };
-
-            console.log("urlmetadata2 Microlink fallback", fallback);
-            return res.json(fallback);
-
-        } catch (fallbackErr) {
-            console.error('❌ Microlink also failed:', fallbackErr.message);
-            return res.status(500).json({
-                error: 'Failed to fetch metadata from both sources.',
-                details: fallbackErr.message,
-            });
-        }
-    }
-});
-app.get('/urlmetadata3', async (req, res) => {
-    const { url } = req.query;
-    console.log("urlmetadata3 url", url);
-    if (!url) {
-        return res.status(400).json({ error: 'URL parameter is required.' });
-    }
-
-    try {
-        const metadata = await urlMetadata(url, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-            },
-        });
-        console.log("urlmetadata3 data", metadata);
-        // Manual favicon fallback if missing
-        if (!metadata.image) {
-            const urlObj = new URL(url);
-            metadata.image = `${urlObj.origin}/favicon.ico`;
-        }
-
-        return res.json({ source: 'url-metadata', ...metadata });
-
-    } catch (err) {
-        console.error('❌ Metadata fetch failed:', err.message);
-        return res.status(500).json({
-            error: 'Failed to fetch metadata.',
-            details: err.message,
-        });
-    }
-});
 
 const handleFile = async (newFile) => {
     try {
@@ -497,7 +318,6 @@ const handleFile = async (newFile) => {
         // Get the main MIME type category (e.g. image, video, audio)
         const mimeType = fileType.split('/')[0]; // image, video, audio
         if (!fileBaseData || !fileType || !fileName) {
-            console.log("err1", "Invalid file input")
             return { err: 'Invalid file input' };
         }
 
@@ -593,7 +413,6 @@ const startServer = async () => {
                                 const { _id } = userData;
 
                                 // Assign the user ID to the current WebSocket connection object
-                                // console.log('web socket', userData);
                                 connection.currentUserID = _id;
                             });
                         }
@@ -876,7 +695,6 @@ const startServer = async () => {
             // function to handle the call ended
             async function handleCallEnded(callData) {
                 let { remotePeer, status, customID, ringDuration, callDuration } = callData;
-                console.log("remotePeer", remotePeer)
                 // Update the call document with status, ring duration, and call duration
                 const updatedCallData = await CallModel.updateOne(
                     { customID },
@@ -917,7 +735,6 @@ const startServer = async () => {
                         $set: { "profileInfo.activeStatus": new Date().toISOString() }
                     }
                 );
-                console.log("offlineUserIDs1", offlineUserIDs);
                 // 5. Handle missed calls and calls that ended when user went offline
                 const callsToUpdate = await CallModel.find({
                     $or: [
@@ -931,7 +748,6 @@ const startServer = async () => {
                     const date1 = new Date(timestamp1);
                     const date2 = new Date(timestamp2);
                     let diffInSeconds = Math.abs(Math.floor((date1 - date2) / 1000));
-                    console.log("date1", date1, "date2", date2, diffInSeconds);
 
                     const hours = Math.floor(diffInSeconds / 3600);
                     const minutes = Math.floor((diffInSeconds % 3600) / 60);
@@ -950,10 +766,8 @@ const startServer = async () => {
                     let call = callObject?.toObject();
                     const callerID = call?.caller?.toString();
                     const calleeID = call?.callee?.toString();
-                    console.log("offlineUserIDs", offlineUserIDs, "callerID", callerID, "calleeID", calleeID);
                     // Missed call: If call status is "calling" and caller is offline, mark as missed
                     if (["calling", "ringing"]?.includes(call?.status) && offlineUserIDs?.includes(callerID)) {
-                        console.log("callA", call?.callingTime, new Date().toISOString(), getTimeDifference(call?.callingTime, new Date().toISOString()))
                         let updatedCallData = {
                             ...call,
                             caller: callerID,
@@ -1302,7 +1116,6 @@ const startServer = async () => {
                 // Function to handle new chat messages
                 async function handleNewChats(newChats) {
                     let savedChatsArray = []; // To store all successfully created chats
-                    console.log("newChatsCH1", newChats?.length, newChats)
                     // Using for...of to handle async operations properly
                     for (let newChat of newChats) {
                         let { customID, chatType, isGroupType, senderID, receiversInfo, file, text, isForwarded, tabInfo, isEdited, disappearingTime } = newChat;
@@ -2090,7 +1903,6 @@ const startServer = async () => {
 
                     // Get current members as string array
                     const currentMemberIDs = group.members.map(id => id.toString());
-                    console.log("invitedUsers", invitedUsers)
                     // Filter invited members to exclude those already in the group
                     const filteredIDs = invitedUsers.filter(id => !currentMemberIDs.includes(id));
                     if (filteredIDs.length === 0) return group; // no new members to invite
@@ -2761,7 +2573,6 @@ const startServer = async () => {
                     let profilePicInfo = (updatingValue?.fileURL)
                         ? await handleFile(updatingValue)
                         : null;
-                    // console.log("setting:failed", profilePicInfo?.err)
                     if (profilePicInfo?.err) {
                         sendTo(changerID, 'setting:failed', '', null);
                         return;
@@ -3073,7 +2884,6 @@ const startServer = async () => {
                                     remover: connectionInfo?.initiaterUserID == currentUserID ? "initiaterUser" : "targetUser",
                                 }
                             });
-                            console.log("connectionInfoArray", connectionInfoArray);
                             await handleConnectionRemove(connectionInfoArray);
                         };
 
@@ -3139,7 +2949,6 @@ const startServer = async () => {
                             };
                             let targetUser = connectionInfo?.initiaterUserID == currentUserID ? connectionInfo?.targetUserID : connectionInfo?.initiaterUserID;
                             // Notify the user that account deletion was successful
-                            console.log("targetUser", targetUser);
                             sendTo(targetUser, 'remove:user:data', 'userID', currentUserID);
                         });
                         await Promise.all(connectionInfoArray);
@@ -3470,38 +3279,6 @@ const startServer = async () => {
                     reason: reason.toString()
                 });
             });
-
-            // The following code is commented out but shows a heartbeat mechanism
-            // to keep track of live connections and terminate dead ones:
-
-            // connection.on("open", () => {
-            //     // Log when a connection is opened
-            //     console.log("Closed")
-            // })
-
-            // // Mark connection as alive
-            // connection.isAlive = true;
-
-            // // Set interval to send ping periodically
-            // connection.timer = setInterval(() => {
-            //     connection.ping();
-
-            //     // Set timeout to declare connection dead if no pong is received
-            //     connection.deathTimer = setTimeout(() => {
-            //         connection.isAlive = false; // Mark as not alive
-            //         clearInterval(connection.timer); // Clear ping interval
-            //         connection.terminate(); // Terminate dead connection
-            //         indicateOnlineUsers('dead'); // Update online users list
-            //         console.log("Dead"); // Log connection death
-            //     }, 1000)
-            // }, 1500)
-
-            // // Reset death timer when pong is received
-            // connection.on("pong", () => {
-            //     clearTimeout(connection.deathTimer);
-            // })
-
-
         })
     } catch (error) {
         console.log(error)
