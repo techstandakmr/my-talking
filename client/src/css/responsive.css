@@ -1,0 +1,463 @@
+@media (max-width: 769px) {
+  .accountFormPage .accountFormContainer {
+    width: 60%;
+  }
+
+  .mainNavBar .btnWithTitle[data-title]:after {
+    top: -42px;
+    left: -3px;
+  }
+
+  .waitingArea {
+    display: none !important;
+  }
+
+
+  .textWithEmojis.recentChatTabInfo {
+    width: 520px !important;
+  }
+
+  .textWithEmojis.tabInfo {
+    width: 480px !important;
+  }
+
+  .textWithEmojis.topBarInfo {
+    width: 350px !important;
+  }
+
+  .topBar .membersName {
+    width: 500px;
+  }
+
+  .hideChatBoxButton,
+  .hideStoriesButton,
+  .hideContactsButton {
+    display: block !important;
+  }
+
+  .chatBoxContainer,
+  .interactionPanel {
+    width: 100% !important;
+  }
+
+  .hideEelemnt {
+    display: none !important;
+  }
+
+  .interactionPanel {
+    flex-direction: column;
+  }
+
+  .interactionPanelInner {
+    flex-direction: column;
+    display: flex;
+    height: 100% !important;
+  }
+
+
+  .mainNavBar {
+    position: sticky;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    order: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border-top: 1px solid gray;
+    background: white;
+    padding: 6px 0px;
+  }
+
+  .mainNavBar>div {
+    flex-direction: row;
+    padding: 1px !important;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .mainNavBar .settingButtons {
+    justify-content: space-evenly;
+  }
+
+  .profileInfoComponent {
+    width: 50% !important;
+  }
+
+  .callIncommngSmallView {
+    width: 60% !important;
+  }
+
+  .audio-player {
+    width: 80%;
+  }
+
+  /* width of image and video in editing panel and carousel */
+  .fileHandler .bottomBar,
+  .fileHandler .toolbar {
+    padding: 14px 16px;
+  }
+
+  .fileHandler .previewBox {
+    padding: 0px 16px;
+  }
+
+  .tall {
+    width: 160px !important;
+  }
+
+  .moderate {
+    width: 340px !important;
+  }
+
+  .wide {
+    width: 440px !important;
+  }
+
+  .mini2Tall {
+    width: 95px !important;
+  }
+
+  .overlayInner {
+    width: 80% !important;
+  }
+
+  .storyView :where(.storyControllerTopInner, .storyControllerBottom, .viewedByContainer) {
+    width: 90% !important;
+  }
+
+  .audio {
+    width: 90% !important;
+  }
+
+  .viewedByLength .icon-stack {
+    padding: 0px !important;
+  }
+
+
+  .textPanelForStory .textPanelForStoryInner {
+    width: 80%;
+  }
+
+  /* video/voice calling panel */
+  .callingComponent .smallScreen {
+    width: 180px;
+  }
+
+  .callingComponent .userAvatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profileTabInfo {
+    max-width: 92% !important;
+  }
+  /* appl logo in recent chats section */
+  .forNonPc{
+    display: block !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .accountFormPage .accountFormContainer {
+    width: 96%;
+  }
+
+  .profileTabInfo {
+    max-width: 88% !important;
+  }
+
+  .textWithEmojis.recentChatTabInfo {
+    width: 240px !important;
+  }
+
+  .textWithEmojis.tabInfo {
+    width: 300px !important;
+  }
+
+  .textWithEmojis.topBarInfo {
+    width: 250px !important;
+  }
+
+  .callIncommngSmallView {
+    width: 85% !important;
+  }
+
+  .topBar .membersName {
+    width: 250px;
+  }
+
+  .chatBoxContainer .topBar .user_avatar_box {
+    width: 44px;
+    height: 44px;
+  }
+
+  .chatBoxContainer .topBar .user_avatar_box .dissapearTimerIcon {
+    width: 16px;
+    height: 16px;
+    right: 0px;
+    bottom: -2px;
+  }
+
+  .systemTextInChatBox {
+    max-width: 90% !important;
+  }
+
+  .searchContainerInChatBox {
+    width: 90%;
+  }
+
+  .actionContainerOnTopbarInChatbox {
+    z-index: 99;
+  }
+
+  .actionContainerOnTopbarInChatbox .actionShowingButton {
+    display: block !important;
+  }
+
+  .actionContainerOnTopbarInChatbox .actionListOnTopbarInChatbox.darkBg {
+    background-color: rgb(48, 56, 65) !important;
+    color: white !important;
+    border-color: rgb(75, 85, 99) !important;
+  }
+
+  .actionContainerOnTopbarInChatbox .actionListOnTopbarInChatbox {
+    transform: scale(0) !important;
+    transition: all 0.2s;
+    flex-direction: column;
+    position: absolute;
+    display: flex;
+    right: 16px;
+    top: 48px;
+    row-gap: 8px;
+    width: fit-content;
+    transform-origin: top right !important;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 20%);
+    padding: 10px;
+    z-index: 999;
+  }
+
+  .actionContainerOnTopbarInChatbox:hover .actionListOnTopbarInChatbox {
+    transform: none !important;
+  }
+
+  .actionListOnTopbarInChatbox button {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0px;
+    border: none !important;
+    outline: none !important;
+    gap: 18px;
+    justify-content: space-between;
+    background-color: transparent !important;
+  }
+
+  .actionListOnTopbarInChatbox .connectionAction {
+    right: -8px;
+    top: 22px;
+  }
+
+  .actionListOnTopbarInChatbox .actionText {
+    display: block !important;
+  }
+
+  .chatCard.fileInChatBox {
+    width: 250px !important;
+  }
+
+  .profileInfoComponent {
+    width: 100% !important;
+  }
+
+  .profileInfoComponent .otherSections {
+    padding: 10px;
+  }
+
+  /* video/voice calling panel */
+  .fullScreen video {
+    width: 100vh;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .callingComponent .smallScreen {
+        width: 150px;
+        opacity: 0.8;
+  }
+
+  .audio-player {
+    width: 100%;
+  }
+
+  /* width of image and video in editing panel and carousel */
+  .fileHandler .bottomBar,
+  .fileHandler .toolbar {
+    padding: 12px;
+  }
+
+  .fileHandler .previewBox {
+    padding: 0px;
+  }
+
+  .square {
+    width: 340px !important;
+  }
+
+  .wide {
+    width: 350px !important;
+  }
+
+  .moderate {
+    width: 350px !important;
+  }
+
+  .tall {
+    width: 150px !important;
+  }
+
+  .storyView :where(.storyControllerTopInner, .storyControllerBottom, .viewedByContainer) {
+    width: 87%;
+  }
+
+  .inputStoryReply {
+    flex-direction: column;
+    column-gap: 26px;
+    align-items: center !important;
+  }
+
+  .inputStoryReply .reactionEmojiContainerInStory {
+    order: 0;
+  }
+
+  .inputStoryReply .multiInputBoxContainer {
+    order: 1;
+  }
+
+  .textPanelForStory {
+    padding: 0px !important;
+  }
+
+  .textPanelForStory .textPanelForStoryInner {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .accountFormPage .formContainer {
+    padding: 22px 14px;
+  }
+
+  .profileTab,
+  .tabButton {
+    padding: 0px 8px !important;
+  }
+
+
+  .textWithEmojis.recentChatTabInfo {
+    width: 100px !important;
+  }
+
+  .textWithEmojis.tabInfo {
+    width: 190px !important;
+  }
+
+  .textWithEmojis.topBarInfo {
+    width: 100px !important;
+  }
+
+  .topBar .membersName {
+    width: 100px;
+  }
+
+  .callIncommngSmallView {
+    width: 95% !important;
+  }
+
+  .profileTabInfo {
+    max-width: 80% !important;
+  }
+
+  .chatCard.textInChatBox {
+    width: 230px !important;
+    min-width: 200px !important;
+  }
+
+  .chatCard.fileInChatBox {
+    width: 210px !important;
+  }
+
+  .chatStatusInfo {
+    right: -40px !important;
+  }
+
+  /* multi input box */
+  .multiInputBox {
+    flex-direction: column !important;
+    justify-content: start;
+    align-items: start !important;
+  }
+
+  .inputActionBtn {
+    display: flex !important;
+  }
+
+  .multiInputBox .inputActionContainer.hide {
+    display: none !important;
+  }
+
+  .multiInputBox .inputActionContainer.show {
+    display: flex !important;
+  }
+
+  .multiInputBox .inputActionContainer {
+    padding: 8px 10px !important;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .multiInputBox .mainInput_sendBtn {
+    margin: auto !important;
+    width: 96%;
+    padding-top: 0px !important;
+  }
+
+  .multiInputBox .input_field {
+    width: 100% !important;
+  }
+
+  /* width of image and video in editing panel and carousel */
+  .square {
+    width: 260px !important;
+  }
+
+  .wide {
+    width: 250px !important;
+  }
+
+  .moderate {
+    width: 250px !important;
+  }
+
+  .mainNavBar .settingButtons {
+    display: none;
+  }
+
+  .overlayInner {
+    width: 100% !important;
+  }
+
+  .profileInfoComponent {
+    width: 100% !important;
+  }
+
+  .confirmationDialog .btnContainer {
+    flex-direction: column;
+  }
+
+  /* .storyInnerFrame {
+    width: 90% !important;
+  } */
+}

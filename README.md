@@ -162,7 +162,7 @@ Each privacy setting supports:
 - **Author**: Abdul Kareem  
 - **GitHub**: [github.com/techstandakmr](https://github.com/techstandakmr)  
 - **LinkedIn**: [linkedin.com/in/abdulkareem-tech](https://linkedin.com/in/abdulkareem-tech)  
-- **Email**: [infostndmaketech@gmail.com](mailto:infostndmaketech@gmail.com)
+- **Email**: [webplusappinfo@gmail.com](mailto:webplusappinfo@gmail.com)
 
 ---
 

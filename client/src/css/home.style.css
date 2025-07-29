@@ -1,0 +1,2460 @@
+.rebBg {
+    background-color: #e90039;
+}
+
+.red {
+    color: #e90039;
+}
+
+
+:root {
+    --primary-bg-color: rgb(243, 242, 253);
+    --primary-color: rgb(243, 242, 253);
+    --secondary-bg-color: rgb(114, 105, 239);
+    --secondary-color: rgb(114, 105, 239);
+}
+
+.primeryBgColor {
+    background-color: var(--primary-bg-color);
+}
+
+.primeryColor {
+    color: var(--primary-color);
+}
+
+.secondryBgColor {
+    background-color: var(--secondary-bg-color);
+}
+
+.secondryColor {
+    color: var(--secondary-color);
+}
+
+.myBgColor {
+    background-color: var(--secondary-bg-color);
+}
+
+.myColor {
+    color: var(--secondary-color);
+}
+
+.darkModeBg1 {
+    background-color: rgb(54, 64, 74) !important;
+    color: white !important;
+    border-color: rgb(75, 85, 99) !important;
+}
+
+.darkModeBg2 {
+    background-color: rgb(48, 56, 65) !important;
+    color: white !important;
+    border-color: rgb(75, 85, 99) !important;
+}
+
+.darkModeBg3 {
+    background-color: rgb(38, 46, 53) !important;
+    color: white !important;
+    border-color: rgb(54, 64, 74) !important;
+}
+
+.darkModeTextColor {
+    color: white !important;
+}
+
+.warningColor {
+    color: #FF4D4D !important;
+}
+
+.highlight {
+    /* background-color: var(--secondary-color); */
+    /* color: var(--secondary-color); */
+    color: rgb(65, 208, 195);
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.showOnHover {
+    transform: scale(0) !important;
+}
+
+.showChildOnParentHover:hover {
+    z-index: 99999;
+}
+
+.showChildOnParentHover:hover .showOnHover {
+    transform: scale(1) !important;
+}
+
+.profileInfoComponent .showChildOnParentHover.memberActions:hover {
+    z-index: 999999 !important;
+}
+
+.rotateShowingElementButtonOnHover {
+    transform: rotate(0deg) !important;
+    transition: all 0.2s ease !important;
+}
+
+.showChildOnParentHover:hover .rotateShowingElementButtonOnHover {
+    transform: rotate(180deg) !important;
+}
+
+
+.dropZoneHighlight.darkModeBg1,
+.dropZoneHighlight.darkModeBg2,
+.dropZoneHighlight.darkModeBg3 {
+    background-color: rgb(38, 46, 53) !important;
+}
+
+
+.dropZoneHighlight {
+    background-color: rgb(230, 235, 245);
+}
+
+/* .darkModeTextColor:hover,
+.darkModeTextColor:focus {
+    color: rgb(54, 64, 74) !important;
+} */
+/* show and hide element with transition - start */
+.showElemSmoothly {
+    opacity: 1 !important;
+    transform: translateY(0px) !important;
+    /* height: auto; */
+    transition: all 0.3s ease !important;
+}
+
+.hideElemSmoothly {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+    height: 0px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* show and hide element with transition - end */
+/* signup and login -start */
+.accountFormPage .accountFormContainer {
+    width: 30%;
+    margin: auto;
+}
+
+.accountFormPage .formContainer {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    border: 1px solid #e5e7eb;
+    background-color: white;
+    border-radius: 6px;
+    padding: 22px 28px;
+}
+
+.accountFormPage form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 18px;
+    margin: 18px 0px;
+}
+
+.accountFormPage .iconWrapper {
+    height: 100%;
+    width: auto;
+    padding: 12px;
+    color: rgb(116, 120, 141);
+    border-right: 1px solid rgb(230, 231, 234);
+}
+
+.accountFormPage .formInputContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(230, 231, 234);
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: rgb(248, 249, 252);
+}
+
+.accountFormPage .formInputContainer input {
+    outline: none !important;
+    border: none !important;
+    background-color: rgb(248, 249, 252);
+}
+
+.accountFormPage .okBtn {
+    background: var(--secondary-bg-color);
+    color: white;
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+/* signup and login -end */
+/* voice and video calling - start */
+.callIncommngSmallView {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    left: 0;
+    width: 40%;
+    height: auto;
+    margin: auto;
+    background-color: rgb(107 114 128);
+    color: white;
+    z-index: 9999999;
+    overflow: hidden;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.callIncommngSmallView .controller {
+    position: relative !important;
+    bottom: 0px !important;
+}
+
+.callingComponent .callIncommngSmallView .controller .btnWrapper {
+    padding: 6px;
+}
+
+.callIncommngSmallView .thinBtn {
+    display: block;
+    background-color: white;
+    width: 40%;
+    margin: auto;
+    height: 3px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.callingScreen {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    z-index: 9999999;
+    overflow: hidden;
+}
+
+.callingComponent .smallScreen {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    width: 200px;
+    background-color: rgb(107 114 128);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+}
+
+.callingComponent .smallScreen video {
+    border-radius: 6px;
+}
+
+.callingComponent .fullScreen {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.callingComponent .closeBtn {
+    position: absolute;
+    z-index: 99999;
+    top: 15px;
+    left: 20px;
+    cursor: pointer;
+}
+
+.callingComponent .callInfo {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 10px;
+    z-index: 99999;
+}
+
+.callingComponent .userAvatar {
+    /* padding: 40px; */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    font-size: 38px;
+    color: white;
+}
+
+.callingComponent .controller {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 100%;
+    bottom: 30px;
+    z-index: 99999;
+}
+
+.callingComponent .controller .btnWrapper {
+    width: max-content;
+    margin: auto;
+    background-color: rgb(107 114 128);
+    color: white;
+    /* background-color: rgb(245, 247, 251); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 28px;
+    padding: 16px 26px;
+    border-radius: 10px;
+}
+
+.callingComponent button {
+    border-radius: 50%;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.callingComponent .viewOnSide {
+    cursor: pointer;
+    position: fixed;
+    top: 50px;
+    right: 0px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 10px;
+    z-index: 99999;
+    background-color: rgb(107, 114, 128, 0.5);
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.videoScreen {
+    transform: rotateY(180deg);
+}
+
+/* voice and video calling - end */
+
+/* mainNavBar - start */
+.mainNavBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: white; */
+}
+
+.mainNavBar button {
+    position: relative;
+    /* background-color: #0087ff; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    /* color: rgb(116 120 141); */
+    padding: 10px;
+}
+
+.mainNavBar button:hover,
+.mainNavBar button:focus,
+.mainNavBar button.active {
+    /* background-color: rgba(0, 135, 255, 0.1); */
+    background-color: rgb(114, 105, 239, 0.2);
+    ;
+    color: var(--secondary-color);
+}
+
+.btnWithTitle {
+    position: relative;
+}
+
+.btnWithTitle[data-title]:hover:after {
+    visibility: visible;
+}
+
+.mainNavBar .btnWithTitle[data-title]:after {
+    left: 46px;
+    top: 5px;
+}
+
+.btnWithTitle[data-title]:after {
+    /* min-width: 80px !important; */
+    width: max-content;
+    content: attr(data-title);
+    font-size: 16px;
+    color: #0087ff;
+    background-color: white;
+    padding: 8px;
+    border-radius: 5px;
+    position: absolute;
+    white-space: normal !important;
+    visibility: hidden;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    z-index: 99999;
+}
+
+.needToSeen {
+    background-color: white;
+    color: #0087ff;
+}
+
+#notificationBadge {
+    display: block;
+    width: 22px;
+    height: 22px;
+    background: #0087ff;
+    position: absolute;
+    top: 0px;
+    right: -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    font-weight: 500;
+    border-radius: 40px;
+    font-size: 10px;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+    height: 60px;
+}
+
+/* mainNavBar - end */
+/* call list - start */
+.callList .outgoing_call {
+    transform: rotate(-45deg);
+    color: rgb(51, 87, 255);
+}
+
+.callList .incomming_call {
+    transform: rotate(-45deg);
+    color: #22c55e;
+}
+
+.callList .missed_call {
+    transform: rotate(-45deg);
+    color: #e90039;
+}
+
+/* call list - end */
+.profileTab,
+.tabButton {
+    justify-content: center;
+    padding: 0px 6px;
+    border-radius: 0px !important;
+    margin: 0px !important;
+    /* border: 1px solid rgb(229, 231, 235); */
+    border-right: 0px;
+    border-left: 0px;
+    border-top: 0px;
+}
+
+.profileTabInfo {
+    padding: 10px 0px;
+    width: 90% !important;
+}
+
+.okButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 58px;
+    color: white;
+    background-color: var(--secondary-bg-color);
+}
+
+.interactionPanel {
+    width: 36% !important;
+    background-color: rgb(245, 247, 251);
+    border-right: 1px solid rgb(230, 231, 234);
+    overflow-y: hidden;
+}
+
+.interactionPanel .popupBox {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(0, 0, 0, 0.5);
+    /* color: white; */
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.interactionPanel .popupBoxWrapper {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 25px;
+    row-gap: 10px;
+}
+
+.profileTab:hover,
+.profileTab.active {
+    background-color: rgb(230, 235, 245);
+}
+
+.profileTab.darkModeBg2:hover,
+.profileTab.darkModeBg2.active {
+    background-color: rgb(38, 46, 53) !important;
+    /* background-color: rgb(54, 64, 74) !important; */
+}
+
+/* profile image setup (in settings, profileInfo) - start */
+.cameraContainer {
+    justify-content: flex-start;
+    position: absolute;
+    z-index: 99999;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.camera_controls_container {
+    position: absolute;
+    bottom: 42px;
+}
+
+.prfoileImgBtn {
+    position: absolute;
+    top: 22px;
+    width: 85%;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+}
+
+.optionForProfileImgInner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 10px;
+    margin: auto;
+    padding: 16px 28px;
+    row-gap: 24px;
+}
+
+.btnsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 28px;
+}
+
+.optionForProfileImgContainer {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    color: white;
+    z-index: 9999999;
+    overflow: hidden;
+}
+
+.prfoileImgContainer {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: white;
+    z-index: 9999999;
+    overflow: hidden;
+    display: flex;
+}
+
+.prfoileImg {
+    width: 30%;
+    margin: auto;
+}
+
+/* profile image setup (in settings, profileInfo) -end */
+
+/* group , boradcast creation  -start */
+.nextBtnForGroup {
+    position: absolute;
+    background: var(--secondary-bg-color);
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    right: 12px;
+    bottom: 32px;
+}
+
+/* group , boradcast creation  -end */
+
+/* user or tab selecting - start */
+.selecting {
+    position: absolute;
+    background: rgba(196, 192, 248, 0.5);
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    color: white;
+    cursor: pointer;
+}
+
+.selectingIcon {
+    background: var(--secondary-bg-color);
+    border-radius: 50%;
+    padding: 4px;
+    transform: translate(42px, 12px);
+}
+
+/* user or tab selecting - end */
+
+/* textWithEmojis - start */
+.textWithEmojis.tabInfo {
+    width: 180px !important;
+}
+
+.textWithEmojis.recentChatTabInfo {
+    width: 180px !important;
+}
+
+.textWithEmojis.topBarInfo {
+    width: 450px !important;
+}
+
+/* textWithEmojis  -end  */
+
+/* chat box -start */
+.chatBoxContainer,
+.waitingArea {
+    width: 64% !important;
+}
+
+.user_avatar_box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50% !important;
+    font-size: 20px;
+    color: white;
+}
+
+.infoText {
+    word-wrap: break-word;
+}
+
+.topBar .imgContainer {
+    width: 45px;
+    height: auto;
+}
+
+.topBar .membersName {
+    width: 600px;
+}
+
+.searchContainerInChatBox {
+    width: 60%;
+    /* margin-top: 10px; */
+    position: absolute;
+    overflow: hidden;
+    top: 66px;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    z-index: 9999999;
+    transition: all 0.3s ease;
+}
+
+/* .searchContainerInChatBox .searchContainer {
+    height: auto;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+} */
+
+.callModalBoxChildInTopBar {
+    width: 400px;
+    transition: .15s all;
+    position: relative;
+}
+
+/* showit and hideIt is related the callModalBoxChildInTopBar */
+.showModalBox {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.hideModalBox {
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.dayName {
+    content: "";
+    display: block;
+    width: 100%;
+    background-color: rgb(239 242 247);
+    position: relative;
+    height: 1px;
+    margin: 26px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.dayName p {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 100px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(239 242 247);
+    border-radius: 8px;
+    font-size: 14px;
+    /* z-index: 9999; */
+}
+
+.chatActionDropDownList {
+    width: max-content;
+    z-index: 99999 !important;
+    top: 22px;
+    right: 0px;
+}
+
+.systemTextInChatBox {
+    background-color: rgb(239 242 247);
+    width: fit-content;
+    max-width: 50%;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.systemTextInRecent {
+    width: 200px;
+}
+
+.chat_seen {
+    /* color: #0087ff ; */
+    color: rgb(65, 208, 195) !important;
+    /* color: var(--secondary-color) ; */
+    /* color: rgb(0, 168, 132) ; */
+}
+
+.mediaGroup .imageFrame {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.mediaGroup .imageFrame .shortBox {
+    width: 280px;
+    position: relative;
+    cursor: pointer;
+}
+
+.mediaGroup .imageFrame .moreMedia {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    color: white;
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.mediaGroup .imageFrame .moreMedia .span {
+    font-size: 40px;
+    position: relative;
+    left: 6px;
+    font-weight: 500;
+}
+
+.chatCard ol {
+    all: unset;
+    list-style-type: none !important;
+}
+
+.chatCard a:not(.chatAttachmentBox) {
+    /* color: #027eb5 !important; */
+    text-decoration: underline !important;
+}
+
+.chatAttachmentBox {
+    display: block;
+    width: 100%;
+    background-color: #E5E7EB;
+    padding: 14px 6px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.chatCard .url-title,
+.chatAttachmentBox .url-title {
+    font-weight: bold;
+    color: #333;
+}
+
+/* .chatCard .url-link,
+.chatAttachmentBox */
+.url-link {
+    color: #0066cc !important;
+    text-decoration: underline;
+}
+
+.chatCard.sender .textWrapper .url-link {
+    color: white !important;
+}
+
+.chatCard {
+    padding: 8px 6px;
+    position: relative;
+    width: auto;
+    border-radius: 10px;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.chatCard.fileInChatBox {
+    width: 400px !important;
+    max-width: 400px !important;
+}
+
+.chatCard.textInChatBox {
+    max-width: 400px !important;
+    min-width: 260px !important;
+}
+
+.chatCard.sender {
+    background-color: #7269ef;
+    color: white;
+}
+
+.chatCard.receiver {
+    background-color: rgb(239 242 247 / 1) !important;
+    color: rgb(63 65 77 / 1);
+}
+
+.chatCard.unsent {
+    background-color: #C0C0C0 !important;
+}
+
+.chatCardRightArrow {
+    border-top-right-radius: 0px !important;
+}
+
+.chatCardLeftArrow {
+    border-top-left-radius: 0px !important;
+}
+
+.chatCardRightArrow::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    /* background-color: rgb(224 231 255); */
+    background-color: #7269ef;
+    top: 0px;
+    right: -10px;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%);
+    transform: rotate(90deg);
+    border-radius: 1px;
+}
+
+.chatCardLeftArrow::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    /* background-color: white; */
+    background-color: rgb(239 242 247 / 1);
+    top: 0px;
+    left: -13px;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%);
+    transform: rotate(180deg);
+    border-radius: 1px;
+}
+
+.chatCard.unsent::after {
+    background-color: #C0C0C0 !important;
+}
+
+.repliedInfo .videoInfo {
+    display: none !important;
+}
+
+.showOnHover.drop-up {
+    bottom: -100%;
+    top: auto !important;
+    margin-bottom: 4px;
+}
+
+.showOnHover.drop-down {
+    top: 100%;
+    bottom: auto;
+    margin-top: 4px;
+}
+
+/* chat box -end */
+/* chat forwarding -start */
+.applyBtn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 50%;
+    background-color: #0056b3;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* chat forwarding -end */
+/* multiInputBox -start */
+em-emoji-picker {
+    width: 100% !important;
+}
+
+.custom-emoji-picker,
+.custom-emoji-picker section {
+    width: 100% !important;
+}
+
+.emoji_round {
+    display: flex;
+    justify-content: center;
+    column-gap: 4px;
+}
+
+.inputForGroupCreation *:not(.emoji_img):not(svg) {
+    all: unset !important;
+}
+
+.editable_div img:not(.emoji_img),
+.editable_div svg {
+    display: none !important;
+}
+
+.inputForChat *:not(.emoji_img):not(b):not(strong):not(i):not(em):not(u):not(mark):not(small):not(sub):not(strike):not(sup):not(del):not(ins):not(s):not(span):not(br):not(blockquote):not(q):not(code):not(kbd):not(var):not(p):not(hr):not(dfn):not(svg):not(img):not(abbr):not(cite):not(bdi):not(bdo):not(ol):not(ul):not(li):not(font):not(a) {
+    all: unset !important;
+}
+
+.multiInputBoxContainer {
+    background-color: rgb(245, 247, 251);
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+}
+
+.multiInputBox .input_field {
+    width: 97% !important;
+    height: 100% !important;
+    min-height: 40px !important;
+}
+
+.input_field {
+    overflow-y: auto;
+    padding: 6px;
+    font-size: 18px;
+    overflow-wrap: anywhere;
+    max-height: calc(40px * 5) !important;
+}
+
+/* .input_field *,
+.inputForStory * {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    white-space: normal !important;
+    color: inherit !important;
+} */
+
+/* .input_field *:not(.input_field b, .input_field i, .input_field u, .input_field strike, .input_field ol,
+    .input_field ul, .input_field font, .input_field svg) {
+    color: inherit !important;
+    background-color: inherit !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+} */
+.input_field :where(:not(a, b, i, u, strike, ol, ul, font, svg)) {
+    color: inherit !important;
+    background-color: inherit !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    white-space: normal !important;
+}
+
+.input_field img {
+    width: 25px !important;
+    height: 25px !important;
+    display: inline-block !important;
+}
+
+.input_field span {
+    background-image: none !important;
+    display: inline-block !important;
+    height: auto !important;
+}
+
+.inputActionContainer {
+    display: flex !important;
+}
+
+aside {
+    width: 100% !important;
+    height: auto !important;
+}
+
+aside li {
+    list-style-type: none;
+
+}
+
+/* aside .epr-emoji-category-content,
+aside .epr-emoji-category-label {
+    margin: 0px !important;
+    padding: 0px !important;
+} */
+aside :where(.epr-emoji-category-content, .epr-emoji-category-label) {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.emoji_container_hide {
+    height: 0px;
+    width: 0px;
+    padding: 0px !important;
+    transform: scale(0);
+    transition: 0.3s;
+    overflow-y: hidden;
+}
+
+.emojiesInChatTypingArea {
+    height: 400px;
+    margin: auto;
+    overflow-y: auto;
+}
+
+.emoji_container_show {
+    transition: 0.3s;
+    padding-bottom: 20px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="ltr"] {
+    text-align: left;
+}
+
+.emoji {
+    display: inline;
+    vertical-align: middle;
+    /* Align emojis with text */
+}
+
+.emoji img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    /* Align images with text */
+}
+
+.emoji_img {
+    width: 25px !important;
+    height: 25px !important;
+    display: inline-block !important;
+}
+
+.reactionEmojiImg {
+    width: 34px !important;
+    height: 34px !important;
+    display: inline-block !important;
+    margin: 0px 2px;
+}
+
+*:not(.not_prevent_select, .input_field *) {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.not_prevent_select {
+    -webkit-user-select: text;
+    /* Safari */
+    -ms-user-select: text;
+    /* IE 10 and IE 11 */
+    user-select: text;
+    /* Standard syntax */
+}
+
+.textStyleDialogBox {
+    position: absolute;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    width: auto;
+}
+
+.textStyleDialogBox.hide {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.textStyleDialogBox.show {
+    opacity: 1;
+    transform: translateY(-60px);
+    height: auto;
+}
+
+.textStyleDialogBox .textStyleDialogBoxInner {
+    height: auto;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    column-gap: 8px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.textStyleDialogBox .textStyleDialogBoxInner.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.textStyleDialogBox .textStyleDialogBoxInner.hide {
+    opacity: 0;
+    transform: translateY(100%);
+    pointer-events: none;
+    /* Prevent interaction when hidden */
+}
+
+ul,
+ol {
+    list-style: revert !important;
+    position: relative;
+    left: 18px !important;
+}
+
+.text_btn_active {
+    background: red;
+    color: white;
+    border-radius: 4px;
+}
+
+.textStyleDialogBox button {
+    cursor: pointer !important;
+}
+
+.hide_drop_up {
+    opacity: 0 !important;
+    transition: all 0.3s;
+    transform: scale(0) !important;
+}
+
+.show_drop_up {
+    opacity: 1 !important;
+    transition: all 0.3s;
+    transform: scale(1) !important;
+}
+
+.drop_up {
+    top: -108px !important;
+}
+
+/* .drop_up button,
+.drop_up label {
+    justify-content: left;
+    column-gap: 8px;
+    padding: 10px 14px;
+    width: 200px;
+    cursor: pointer;
+} */
+.drop_up :where(button, label) {
+    justify-content: left;
+    column-gap: 8px;
+    padding: 10px 14px;
+    width: 200px;
+    cursor: pointer;
+}
+
+.drop_up .btn_name {
+    font-size: 20px;
+}
+
+.camera_nav_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.camera_nav_btn button {
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.start_vid_rec_btn {
+    background-color: red;
+    border: 3px solid white;
+}
+
+.rec_timer {
+    font-size: 20px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rec_indicator {
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 50%;
+    animation: blink 1s ease infinite;
+    /* 3s visible, 3s hidden */
+    display: inline-block;
+    display: block;
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+        /* Visible for the first 3 seconds */
+    }
+
+    50.01%,
+    100% {
+        opacity: 0;
+        /* Hidden for the next 3 seconds */
+    }
+}
+
+/* multiInputBox -end */
+/* profileInfoComponent - start */
+.profileInfoComponent {
+    width: 32% !important;
+    background-color: rgb(245, 247, 251);
+    border-right: 1px solid rgb(230, 231, 234);
+    overflow-y: auto;
+}
+
+.profileInfoComponent .otherSections {
+    padding: 18px;
+}
+
+.navMediaTab {
+    transition: border-color 0.3s ease-in-out, border-width 0.3s ease-in-out;
+    padding: 12px 10px !important;
+}
+
+.mediaItemContainer {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.mediaItemContainer .mediaItemBg {
+    border: 1px solid #e6e7eacc;
+    border-radius: 8px;
+}
+
+.mediaItemContainer .mediaItem {
+    width: 66px;
+    height: 66px;
+    border: 1px solid #e6e7eacc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.linkPrevContainer {
+    background: #7269ef;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+}
+
+.linkPrevContainer .linkPrevURL {
+    background: white;
+    /* color: black; */
+    padding: 6px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+}
+
+.linkPrevContainer .linkPrevURL .url-title {
+    font-size: 15px;
+}
+
+.linkPrevContainer .linkPrevURL a {
+    text-decoration: underline !important;
+    color: #0066cc;
+}
+
+
+/* .documentCard for showing documents file like html,pdf,doc,docx and etc. */
+.documentCard {
+    border-radius: 8px;
+    width: 100%;
+    padding: 8px;
+    height: 70px;
+    column-gap: 4px;
+    background: white;
+}
+
+.documentCard .documentCardIcon {
+    border-radius: 8px;
+    background: #7269ef33;
+    color: rgb(114, 105, 239);
+}
+
+.mediaItemContainer .mediaItem img {
+    border-radius: 4px;
+}
+
+.mediaItemContainer .mediaItem .mediaIcon {
+    position: absolute;
+    left: 4px;
+    background: #7269ef33;
+    color: rgb(114, 105, 239);
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0px;
+    opacity: 1;
+}
+
+.dissapearTimerIcon {
+    position: absolute;
+    right: -2px;
+    bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    transform: translate(0px);
+    color: var(--secondary-color);
+    background: white;
+    border-radius: 50%;
+    padding: 0px !important;
+}
+
+
+.profileInfoComponent .showDisappearingPanel .topHalf {
+    background-color: rgb(245, 247, 251);
+    padding: 18px !important;
+    border-bottom: 1px solid #e6ebf5;
+}
+
+.profileInfoComponent .showDisappearingPanel .bottomHalf {
+    padding: 14px !important;
+}
+
+.profileInfoComponent .timerOptions input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--secondary-color) !important;
+}
+
+/* profileInfoComponent -end */
+/* loading animation - start */
+.confirmationDialog {
+    z-index: 99999;
+}
+
+.overlay {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(50px);
+    color: white;
+    z-index: 999;
+    /* z-index: 99999999999; */
+    overflow: hidden;
+}
+
+.overlayInner {
+    width: 50%;
+}
+
+.modelBoxContainer {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-bg-color);
+    /* backdrop-filter: blur(5px); */
+    color: white;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.deleteBtnContainer {
+    background: var(--secondary-bg-color);
+    padding: 16px;
+    border-radius: 50%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+}
+
+/* loading animation - end */
+
+/* fileHandler -start*/
+.fileHandler {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    color: white;
+    z-index: 999999999;
+    overflow: hidden;
+    /* padding: 20px 0px; */
+}
+
+.fileHandlerInner {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    /* border-radius: 8px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filePreviewContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: normal;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: white;
+}
+
+.fileHandler .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fileHandler .bottomBar,
+.fileHandler .toolbar {
+    padding: 20px 26px;
+    width: 100%;
+}
+
+.fileHandler .toolsBtn {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    column-gap: 24px;
+    width: 100%;
+}
+
+.fileHandler .toolsBtn button:hover {
+    color: #0087ff;
+}
+
+.fileHandler .previewBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 28px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.fileHandler .modelContainer {
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.25s;
+}
+
+.fileHandler .modelContainer .modelBox {
+    width: 35%;
+    height: 150px;
+    background: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 6px;
+}
+
+.fileHandler .previewBox .fileContainer {
+    /* border: 1px solid rgba(239, 242, 247, 0.5); */
+}
+
+.fileBox {
+    width: 100%;
+}
+
+.fileHandler .previewBox .fileTypeInfo {
+    height: 250px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.fileHandler .previewBox .fileTypeInfo .fileIconName svg {
+    height: 38px;
+    color: white;
+}
+
+.fileHandler .previewBox .fileTypeInfo .fileIconName .fileName {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+}
+
+.thumbnailBox .fileIconInThumbnail {
+    font-size: 28px;
+    background: #b2b2b2;
+    border-radius: 7px;
+    color: white;
+}
+
+.fileHandler .captionBox input {
+    background-color: #eff2f7;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px 8px;
+    outline: none;
+}
+
+.fileHandler .thumbnailBoxInner {
+    width: auto;
+    height: 71px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.fileHandler .thumbnailBoxInner.rightShadow::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    height: 92%;
+    width: 24px;
+    margin: auto;
+    border-radius: 0px 5px 5px 0px;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    pointer-events: none;
+    /* Allow interaction with content */
+    z-index: 10;
+}
+
+.fileHandler .uploadedImagesContainer {
+    height: 100%;
+    overflow-y: hidden;
+    /* flex-direction: column; */
+    overflow-x: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-content: baseline;
+    column-gap: 2px;
+}
+
+.fileHandler .thumbnail {
+    width: 66px;
+    display: flex;
+    height: 60px;
+}
+
+.uploadedImagesContainer .fileRemover {
+    position: absolute;
+    background: rgb(107, 114, 128);
+    right: -5px;
+    top: -4px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+}
+
+.btnWithTitle[data-title]:after {
+    left: -22px;
+    font-size: 14px !important;
+    top: 30px;
+    font-weight: 500;
+}
+
+#drawing-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+}
+
+.colorsDataContainer {
+    position: absolute;
+    top: 38px;
+    right: 0px;
+    z-index: 999;
+    transition: 0.3s;
+    width: 241px;
+    padding: 8px 0px;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.colorsDataContainer.show {
+    opacity: 1;
+    transform: translate(0px);
+    height: 400px;
+}
+
+.colorsDataContainer.hide {
+    opacity: 0;
+    height: 0px;
+    transform: scale(0);
+}
+
+.emojiesInTypingOnImage {
+    position: absolute;
+    transition: 0.3s;
+    bottom: 0px;
+    padding: 0px;
+    border: 1px solid #e7e7e7;
+    border-radius: 8px 8px 0px 0px !important;
+    overflow-y: scroll;
+}
+
+.emojiesInTypingOnImage.show {
+    height: 300px;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.emojiesInTypingOnImage.hide {
+    height: 0px;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.emoji_container_show.emojiesInTypingOnImage aside {
+    border: none;
+}
+
+/* emoji inserting on image in editing mode - start */
+.mainFrame .emojiBox {
+    position: absolute;
+    width: 42px;
+    height: auto !important;
+    /* min-width: 42px !important; */
+    background-color: transparent;
+    cursor: move;
+    padding: 0px;
+    box-sizing: border-box;
+    resize: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainFrame .emojiBox :where(div, span) {
+    display: none;
+}
+
+/* Hover: Highlight only the hovered emoji */
+.mainFrame .emojiBox:hover {
+    border: 2px solid #1DA1F2;
+}
+
+.mainFrame .emojiBox:hover :where(div, span) {
+    display: inline-block;
+}
+
+/* Focus: Highlight only the focused emoji */
+.mainFrame .emojiBox:focus {
+    border: 2px solid #1DA1F2;
+}
+
+.mainFrame .emojiBox:focus :where(div, span) {
+    display: inline-block;
+}
+
+.mainFrame .resizeHandleEmojiBox {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #1DA1F2;
+    cursor: nwse-resize;
+}
+
+.mainFrame .resizeHandleEmojiBox.top-left {
+    top: -5px;
+    left: -5px;
+    cursor: nw-resize;
+}
+
+.mainFrame .resizeHandleEmojiBox.top-right {
+    top: -5px;
+    right: -5px;
+    cursor: ne-resize;
+}
+
+.mainFrame .resizeHandleEmojiBox.bottom-left {
+    bottom: -5px;
+    left: -5px;
+    cursor: sw-resize;
+}
+
+.mainFrame .resizeHandleEmojiBox.bottom-right {
+    bottom: -5px;
+    right: -5px;
+    cursor: se-resize;
+}
+
+.mainFrame .rotaterEmoji {
+    position: absolute;
+    top: -25px;
+    left: -12px;
+    color: #1DA1F2;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.mainFrame .removeEmoji {
+    position: absolute;
+    top: -22px;
+    right: -8px;
+    color: #1DA1F2;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+/* width of box where audio  */
+.audio {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 18px;
+}
+
+/* fileHandler -end*/
+/* cropping - start */
+.croppingContainer {
+    position: relative;
+}
+
+.cropBox {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    cursor: move;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #1DA1F2;
+}
+
+.resizeHandleCropBox {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #1DA1F2;
+    cursor: nwse-resize;
+}
+
+.resizeHandleCropBox.top-left {
+    top: -5px;
+    left: -5px;
+    cursor: nw-resize;
+}
+
+.resizeHandleCropBox.top-right {
+    top: -5px;
+    right: -5px;
+    cursor: ne-resize;
+}
+
+.resizeHandleCropBox.bottom-left {
+    bottom: -5px;
+    left: -5px;
+    cursor: sw-resize;
+}
+
+.resizeHandleCropBox.bottom-right {
+    bottom: -5px;
+    right: -5px;
+    cursor: se-resize;
+}
+
+.hideCanvas {
+    display: none;
+}
+
+/* cropping - end */
+
+/* audio player - start*/
+.audio-player {
+    background-color: white;
+    border-radius: 8px;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.audio-player .play-pause-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+.audio-player .play-pause-btn:hover {
+    color: #0056b3;
+}
+
+.audio-player .progress-bar {
+    cursor: pointer;
+    accent-color: #007bff;
+}
+
+.audio-player .text {
+    font-size: 14px;
+    color: #666;
+}
+
+/* audio player - end*/
+/* video player - start*/
+.video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.video-container .video {
+    width: 100%;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.video-container .controls {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(230, 235, 245, 0.5);
+}
+
+.video-container:hover .controls {
+    display: block;
+}
+
+.video-container .play-pause-btn {
+    position: absolute;
+    background: rgb(255, 255, 255, 0.8);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    color: var(--secondary-color);
+    font-size: 32px;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.video-container .videoFrame:hover .play-pause-btn {
+    display: flex;
+}
+
+.video-container input[type="range"] {
+    accent-color: var(--secondary-color);
+}
+
+.video-container .control-btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: color 0.3s;
+}
+
+
+.video-container .progress-bar {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+.video-container .time {
+    color: black;
+    font-size: 14px;
+}
+
+.video-container .volume-bar {
+    width: 100px;
+}
+
+/* video player - start*/
+/* stories - start  */
+.needToWatchStory {
+    border: 2px solid var(--secondary-color);
+}
+
+.storyWatched {
+    border: 2px solid rgb(156 163 175);
+}
+
+.myStory .addIcon {
+    width: auto;
+    height: auto;
+    position: absolute;
+    bottom: 0px;
+    left: 32px;
+    background: #dadae0;
+    border-radius: 50%;
+    padding: 1px;
+    color: white;
+}
+
+.no:hover {
+    background-color: inherit !important;
+}
+
+/* stories - end  */
+/* textPanelForStory - start*/
+.textPanelForStory {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    z-index: 9999999;
+    overflow: hidden;
+    padding: 20px 0px;
+}
+
+.textPanelForStory .textPanelForStoryInner {
+    position: relative;
+    margin: auto;
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.textPanelForStory .inputContainer {
+    border-radius: 6px;
+    padding: 10px 20px;
+    height: 84%;
+}
+
+.textPanelForStory .textPanelForStoryInner .textPatternListContainer {
+    position: absolute;
+    width: 100%;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: white;
+    padding: 6px 18px;
+    padding-bottom: 24px;
+    border-radius: 18px 18px 0px 0px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.4s;
+    overflow: scroll;
+    z-index: 9999;
+}
+
+.textPanelForStory .textPatternListContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.textPanelForStory .textPatternListContainer.show {
+    height: 50%;
+    opacity: 1;
+    transform: translate(0px);
+}
+
+.textPanelForStory .textPatternListContainer.hide {
+    height: 0px;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.textPanelForStory .textPatternListContainer .textPatternBox {
+    width: 70px;
+    height: 70px;
+    background-color: #f5f7fb;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.textPanelForStory .inputContainer .emoji_img {
+    width: 35px !important;
+    height: 35px !important;
+}
+
+.textPanelForStory .emojiesInTextStoryPanel {
+    transition: all 0.4s ease;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.textPanelForStory .emojiesInTextStoryPanel.show {
+    height: 300px;
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.textPanelForStory .emojiesInTextStoryPanel.hide {
+    height: 0px;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.textPanelForStory .textEditingListContainer {
+    position: absolute;
+    width: auto;
+    left: 15%;
+    bottom: 0px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.4s ease;
+    overflow: scroll;
+    z-index: 9999;
+    border-radius: 6px;
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textPanelForStory .textEditingListContainer.show {
+    height: 54px;
+    opacity: 1;
+    transform: translateY(-66px);
+}
+
+.textPanelForStory .textEditingListContainer.hide {
+    height: 0px;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.textPanelForStory .textEditingListInner {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0px;
+    border-radius: 6px;
+}
+
+.textPanelForStory .textEditingListInner button {
+    padding: 10px;
+}
+
+/* textPanelForStory - end*/
+/* story view - start  */
+.storyLength {
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 10px;
+}
+
+.storyLength div {
+    height: 2px;
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+    position: relative;
+}
+
+.storyLength .bottomLayer {
+    height: 3px;
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+.storyLength .upperLayer {
+    background-color: white;
+    height: 3px;
+    display: block;
+    border-radius: 2px;
+    position: absolute;
+}
+
+.storyView {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.textStoryInnerFrame {
+    font-size: 10px;
+    border-radius: 10px;
+}
+
+/* .storyView .storyController {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} */
+.storyControllerTop {
+    position: absolute;
+    width: 100%;
+    /* height: 100%; */
+    top: 0px;
+}
+
+.storyControllerBottom {
+    position: absolute;
+    width: 100%;
+    /* height: 100%; */
+    bottom: 0px;
+    /* right: 0p; */
+}
+
+.storyView :where(.storyControllerTopInner, .storyControllerBottom, .viewedByContainer) {
+    width: 60%;
+    margin: 0px auto;
+    padding: 10px 0px;
+}
+
+.storyView .storyControllerBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0px;
+}
+
+.storyView .storyControllerBottom .viewedByLength {
+    background-color: rgb(239, 242, 247);
+    color: rgb(63, 65, 77);
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.iconBox {
+    z-index: calc(10 - var(--index));
+    width: 52px;
+    height: 52px;
+}
+
+.replyingStoryInputContainer {
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 10px;
+    width: 100%;
+    height: auto;
+    /* background-color: white; */
+    border-radius: 6px;
+    transition: all 0.3s;
+    opacity: 1;
+    position: relative;
+}
+
+.replyingStoryInputContainer:hover,
+.replyingStoryInputContainer:focus {
+    opacity: 1;
+}
+
+.drop_upInForStoryReply {
+    bottom: 65px;
+    left: 0px;
+    transition: 0.3s;
+    width: auto;
+    padding: 6px 0px;
+    margin: auto;
+}
+
+.showMediaReplyOptions {
+    width: 169px !important;
+}
+
+.emojiContainerInStoryView {
+    position: absolute;
+    height: 300px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    width: 100%;
+    margin: auto;
+    border-radius: 6px;
+    background: white;
+    padding: 18px;
+    padding-top: 0px !important;
+    transition: all 0.3s;
+}
+
+.emojiContainerInStoryView.show {
+    height: 300px;
+    opacity: 1;
+    transform: translate(0px);
+}
+
+.emojiContainerInStoryView.hide {
+    opacity: 0;
+    transform: scale(0);
+    height: 0px;
+}
+
+.inputForStory ul {
+    display: inline-block !important;
+}
+
+.reactionEmojiContainerInStory {
+    transition: all 0.4s;
+}
+
+.reactionEmojiContainerInStory.hide {
+    opacity: 0;
+    transform: scale(0);
+    height: 0px;
+    width: 0px;
+}
+
+.reactionEmojiContainerInStory.show {
+    width: auto;
+    padding: 12px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+}
+
+.bottomCtrlBtn {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background: rgb(239 242 247);
+    padding: 12px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.viewedByContainer {
+    border-radius: 6px;
+    bottom: 0px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    position: absolute;
+    transition: all 0.4s;
+}
+
+.viewedByContainer.hide {
+    opacity: 0;
+    transform: scale(0);
+    height: 0px;
+}
+
+.viewedByContainer.show {
+    opacity: 1;
+    transform: translate(0px);
+    height: auto;
+    z-index: 999999;
+}
+
+.viewedByContainer .viewedByHeader {
+    border-radius: 6px 6px 0px 0px;
+    background-color: #74788d;
+    color: white;
+    padding: 12px;
+}
+
+.viewedByContainer .viewedByList {
+    overflow: scroll;
+    height: 40%;
+}
+
+/* story view - end  */
+/* settings component - start */
+.largeProfileAvatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50% !important;
+    border: 3px solid #f5f7fb;
+    outline: 2px solid #e6ebf5;
+    font-size: 40px;
+    color: white;
+    margin: 18px 0px;
+}
+
+.activityAreaInner {
+    width: 50%;
+}
+
+/* settings component - end */
