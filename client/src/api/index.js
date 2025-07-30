@@ -3,10 +3,8 @@ import axios from "axios";
 
 // Creating an axios instance with baseURL and credentials enabled
 const API = axios.create({
-    // baseURL: "http://localhost:3030/api",  // Base URL for all API endpoints
-    // baseURL: `https://real-chat-application-mern.onrender.com/api`,  // Base URL for all API endpoints
     baseURL: `${import.meta.env.VITE_API_URL}api`,  // Base URL for all API endpoints
-    withCredentials: true                  // Sends cookies with requests
+    withCredentials: true // Sends cookies with requests
 });
 // Main server URL (can be used for accessing static resources or outside API base path)
 const mainUrl = `${import.meta.env.VITE_API_URL}`;
