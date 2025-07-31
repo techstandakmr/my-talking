@@ -134,9 +134,6 @@ const AudioPlayer = memo(({ fileInfo, showIcon })=>{
             </div>
         </React.Fragment>
     );
-},[])
-// const AudioPlayer = ({ fileInfo, showIcon }) => {
-    
-// };
+},[]);
 
 export default AudioPlayer;

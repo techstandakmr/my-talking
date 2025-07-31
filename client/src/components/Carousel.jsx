@@ -13,14 +13,7 @@ import moment from 'moment';
 import { FaClockRotateLeft } from "react-icons/fa6";
 // FontAwesome icon imports for different file types
 import {
-    faFileWord,
-    faFileExcel,
-    faFilePowerpoint,
-    faFilePdf,
     faFileImage,
-    faFileCode,
-    faFileAlt,
-    faFileArchive,
     faFileAudio,
     faFileVideo,
     faTimes,
@@ -29,14 +22,7 @@ import {
 
 // Map file icon constants
 const iconMap = {
-    faFileWord: faFileWord,
-    faFileExcel: faFileExcel,
-    faFilePowerpoint: faFilePowerpoint,
-    faFilePdf: faFilePdf,
     faFileImage: faFileImage,
-    faFileCode: faFileCode,
-    faFileAlt: faFileAlt,
-    faFileArchive: faFileArchive,
     faFileAudio: faFileAudio,
     faFileVideo: faFileVideo,
 };

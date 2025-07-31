@@ -1,6 +1,6 @@
-import  {  useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { FaCheck, FaClockRotateLeft } from "react-icons/fa6";
-import {  BsSend, BsX, BsPlus } from "react-icons/bs";
+import { BsSend, BsX, BsPlus } from "react-icons/bs";
 import { HiClipboardDocumentList } from "react-icons/hi2";
 import EmojiPicker from 'emoji-picker-react';
 import { UserContext } from '@context/UserContext';
@@ -71,11 +71,13 @@ function File() {
 
     // Convert file size to readable string
     function formatFileSize(bytes) {
-        if (bytes === 0) return '0 Bytes';
-        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(1024));
-        const size = (bytes / Math.pow(1024, i)).toFixed(2);
-        return `${size} ${sizes[i]}`;
+        const units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        let i = 0;
+        while (bytes >= 1024 && i < units.length - 1) {
+            bytes /= 1024;
+            i++;
+        }
+        return bytes.toFixed(2) + ' ' + units[i];
     };
 
     // Image size presets (for PCs) , and all sizes hanlded according to the screen sizepx
@@ -90,8 +92,9 @@ function File() {
 
     // Calculate height based on new width keeping aspect ratio
     function calculateReductions(originalWidth, originalHeight, newWidth) {
-        const newHeight = (originalHeight * newWidth) / originalWidth;
-        return newHeight;
+        // const newHeight = (originalHeight * newWidth) / originalWidth;
+        const newHeight = (originalHeight / originalWidth) * newWidth;
+        return newHeight; // Return new height
     };
 
     // Get width based on aspect ratio
@@ -128,10 +131,10 @@ function File() {
         updatedData = {
             ...updatedData,
             ...(displayedImageWidth ? { fileWidth: displayedImageWidth } : {}),
-        }; 
+        };
         if (currentFile != null && currentFile.fileID === fileID) {
             setCurrentFile((fileInfo) => ({ ...fileInfo, ...updatedData }));
-        }
+        };
 
         setUploadedFiles((files) =>
             files.map((fileInfo) =>
@@ -214,7 +217,7 @@ function File() {
                     allFilesReadyForEditing();
                 }
             } else {
-                // toast.error(`${fileRejection.msg}`);
+                // remove file if it was rejected
                 setUploadedFiles((prevFiles) => prevFiles?.filter((fileInfo) => fileInfo?.fileID !== fileID));
             }
         });
@@ -233,7 +236,6 @@ function File() {
         }
     };
 
-    // Handle dimension extraction on upload
     useEffect(() => {
         if (isFileUploading) {
             if (uploadedFiles?.every((fileInfo) => fileInfo?.isDraft)) {
@@ -262,7 +264,7 @@ function File() {
     const [showEmojiesContainer, setShowEmojiesContainer] = useState(false);
 
     // Function to add an emoji to the current file
-    function addEmoji(emojiUrl, emoji) {
+    function addEmoji(emojiUrl) {
         setCurrentFile((fileInfo) => {
             let fileID = fileInfo?.fileID;
             let fileEmoji = fileInfo?.emoji || []; // Ensure it's an array, even if undefined
@@ -480,6 +482,12 @@ function File() {
                 if (!e.target.classList.contains("resizeHandleEmojiBox") &&
                     !e.target.classList.contains("rotaterEmoji") &&
                     !e.target.classList.contains("removeEmoji")) {
+                    const boxRect = emojiBox.getBoundingClientRect();
+                    const posX = e.touches[0].clientX;
+                    const posY = e.touches[0].clientY;
+
+                    diffX = posX - boxRect.left;
+                    diffY = posY - boxRect.top;
                     isTouch = false;
                     moving(e); // Trigger movement
                 }
@@ -807,16 +815,6 @@ function File() {
             trackFileSendingStatus();
         };
     }, [uploadedFiles, filesEditingStatus]);
-
-    // Function to calculate resized image height and reduction percentages
-    function calculateReductions(originalWidth, originalHeight, newWidth) {
-        const newHeight = (originalHeight * newWidth) / originalWidth; // Maintain aspect ratio
-
-        const widthReduction = ((originalWidth - newWidth) / originalWidth) * 100;
-        const heightReduction = ((originalHeight - newHeight) / originalHeight) * 100;
-
-        return newHeight; // Return new height
-    };
 
     // Function to apply drawings and emojis to images
     function applyDrawingsAndEmojis() {
@@ -1377,7 +1375,7 @@ function File() {
                         {/* show emoji picker when it is needed */}
                         <div className={`${showEmojiesContainer ? 'show' : 'hide'} emojiesInTypingOnImage w-full p-4 ${activeDarkMode ? "darkModeBg2" : ''} bg-white shadow-lg rounded-lg w-96`}>
                             <EmojiPicker
-                                onEmojiClick={emoji => addEmoji(emoji.imageUrl, emoji.emoji)}
+                                onEmojiClick={emoji => addEmoji(emoji.imageUrl)}
                                 emojiStyle={"apple"}
                             />
                         </div>

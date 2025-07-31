@@ -1,4 +1,4 @@
-import  { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { UserContext } from '@context/UserContext';
 import _ from 'lodash';
 import { ProfileTab } from "./index.js";
@@ -22,8 +22,6 @@ function ChatForwarding() {
         sendWebSocketMessage
     } = useContext(UserContext);
     let currentUserData = getSingleUserData(currentUserID);
-    // Get connections that are accepted but do not exist in recentChatsTabs
-    // let nonRecentConnections = ;
     /**
  * Retrieves chat tabs for message forwarding.  
  * Includes recent chats (excluding self) and accepted connections not in recent chats.
@@ -124,7 +122,7 @@ function ChatForwarding() {
             };
         });
     };
-    
+
     // tab selection - end
     function sendChats() {
         let chatsToForward = forwardingChats?.flatMap((chat) =>

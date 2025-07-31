@@ -64,12 +64,6 @@
     color: #FF4D4D !important;
 }
 
-.highlight {
-    /* background-color: var(--secondary-color); */
-    /* color: var(--secondary-color); */
-    color: rgb(65, 208, 195);
-}
-
 .truncate {
     white-space: nowrap;
     overflow: hidden;

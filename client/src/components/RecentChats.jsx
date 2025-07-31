@@ -205,19 +205,8 @@ function RecentChats() {
     // Normalize spaces to make search matching cleaner
     const normalizeSpaces = (str) => str.replace(/\s+/g, ' ').trim();
 
-    // Combine message text into a consistent format
-    function mergeTextData(textData) {
-        const combinedValue = getExtractedTextValue(textData);
-        return [{
-            type: "text",
-            value: combinedValue,
-            format: [],
-            isLink: false
-        }];
-    };
-
     // Get tab name from user/group/broadcast info
-    function getNameValues(chatData) {
+    function getTabNameValues(chatData) {
         let tabName = chatData?.isGroupType ? getSingleGroupData(chatData?.toGroupID)?.profileInfo?.name :
             (chatData?.isBroadcastType && currentUserID == chatData?.senderID) ? getSingleBroadcastData(chatData?.toBroadcastID)?.profileInfo?.name :
                 chatData?.aiAssistant ? aiAssistant?.profileInfo?.name :
@@ -239,11 +228,6 @@ function RecentChats() {
         let avaiableChats = allUniqueChats?.filter((chatData) => {
             return !chatData?.deletedByUsers?.includes(currentUserID);
         });
-
-        const isMatch = (text, term) => {
-            if (!text || !term) return false;
-            return normalizeSpaces(text).toLowerCase().includes(normalizeSpaces(term).toLowerCase());
-        };
 
         // Match tabs based on tab name
         let recentTabMatches = currentUserData?.recentChatsTabs?.filter((tabInfo) => {
@@ -271,7 +255,7 @@ function RecentChats() {
         // Search messages, tab names, and sender names
         const chatMatches = avaiableChats?.filter(chatData => {
             const chatTextValue = normalizeSpaces(getExtractedTextValue(chatData?.text)).toLowerCase();
-            let tabName = normalizeSpaces(getExtractedTextValue(getNameValues(chatData))).toLowerCase();
+            let tabName = normalizeSpaces(getExtractedTextValue(getTabNameValues(chatData))).toLowerCase();
             let senderName = chatData?.isGroupType
                 ? normalizeSpaces(chatData?.receiversInfo?.map(receiver => getExtractedTextValue(getSingleUserData(receiver?.receiverID)?.profileInfo?.name))?.join(' '))
                 : '';
@@ -284,7 +268,7 @@ function RecentChats() {
         })?.map(chatData => {
             return {
                 ...chatData,
-                tabName: getNameValues(chatData),
+                tabName: getTabNameValues(chatData),
                 senderName: chatData?.isGroupType ? chatData?.receiversInfo?.find(receiver => getSingleUserData(receiver?.receiverID)?.profileInfo?.name) : '',
                 tabData: chatData?.isGroupType ? getSingleGroupData(chatData?.toGroupID) :
                     (chatData?.isBroadcastType && currentUserID == chatData?.senderID) ? getSingleBroadcastData(chatData?.toBroadcastID) :
@@ -361,7 +345,7 @@ function RecentChats() {
         })?.map(chatData => {
             return {
                 ...chatData,
-                tabName: getNameValues(chatData), // Get and attach the chat tab name
+                tabName: getTabNameValues(chatData), // Get and attach the chat tab name
                 senderName: chatData?.isGroupType
                     ? chatData?.receiversInfo?.find(receiver => getSingleUserData(receiver?.receiverID)?.profileInfo?.name)
                     : '', // Get sender name if it's a group chat
@@ -374,7 +358,7 @@ function RecentChats() {
 
         setSearchedResults(result); // Set filtered results
     };
-    let ChatTab = ({
+    let RecentChatTab = ({
         chatData,
         tabInfo,
         tabData,
@@ -1106,11 +1090,11 @@ function RecentChats() {
                                     // Get unread chat count
                                     let unreadChatsNumbers = getUnreadChats(currentUserID, allUniqueChats, tabInfo);
 
-                                    // Render each chat tab using ChatTab component
+                                    // Render each chat tab using RecentChatTab component
                                     return <div key={idx} id={tabData?._id} className={`${tabData?._id == openedTabInfo?.tabID ? "active" : ""} ${activeDarkMode ? "darkModeBg2" : ''} relative ${(!tabData?.isDeleted && tabInfo?.tabType != "aiAssistant") && "dropZone"} profileTab border-b border-gray-200`} style={{
                                         ...(tabInfo?.isPinned && { order: -(currentUserData?.recentChatsTabs?.length - idx) }) // Prioritize pinned chats
                                     }}>
-                                        <ChatTab
+                                        <RecentChatTab
                                             chatData={
                                                 userChatTab ||
                                                 groupTabChat ||
@@ -1138,7 +1122,7 @@ function RecentChats() {
                                 let unreadChatsNumbers = getUnreadChats(currentUserID, allUniqueChats, tabInfo);
                                 // Render searched chat tab
                                 return <div key={idx2} className={`${resultData?.tabData?._id == openedTabInfo?.tabID ? "" : ""} ${activeDarkMode ? "darkModeBg1" : ''} relative profileTab border-b border-gray-200`}>
-                                    <ChatTab
+                                    <RecentChatTab
                                         chatData={resultData?.senderID ? resultData : null} //it indicates, it is a chat, else null
                                         tabInfo={tabInfo}
                                         tabData={{ ...resultData?.tabData, tabName: resultData?.tabData?.profileInfo?.name }}

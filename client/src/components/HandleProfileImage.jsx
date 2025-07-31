@@ -19,7 +19,7 @@ function HandleProfileImage({ setShowProfileEditingPanel, profilePicInfo, setPro
   const imgRef = useRef(null);
 
   // Function to convert cropped image data URL to file data object
-  async function makeFileBase(croppedDataURL) {
+  function makeFileInfoData(croppedDataURL) {
     let fileToSend = croppedDataURL;
 
     // Generate a unique filename for the profile picture
@@ -173,9 +173,6 @@ function HandleProfileImage({ setShowProfileEditingPanel, profilePicInfo, setPro
         }
       });
 
-      // Check if crop box has any size or position styles set (indicating cropping needed)
-      let needToCrop = cropBox.style?.width !== "" || cropBox.style?.height !== "" || cropBox.style?.left !== "" || cropBox.style?.top !== "";
-
       // Crop button click event handler
       cropButton.addEventListener("click", async () => {
         const mainRect = croppingContainer.getBoundingClientRect();
@@ -206,7 +203,7 @@ function HandleProfileImage({ setShowProfileEditingPanel, profilePicInfo, setPro
           const croppedDataURL = canvas.toDataURL("image/png");
 
           // Create new file data object from cropped image
-          let newFileData = await makeFileBase(croppedDataURL);
+          let newFileData = makeFileInfoData(croppedDataURL);
 
           // Update profile picture info state with new cropped data
           setProfilePicInfo((imgInfo) => ({

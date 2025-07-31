@@ -153,7 +153,7 @@ function MultiInputBox({
             }, 200)
         };
         if (
-            (previousTabRef.current && previousTabRef.current.tabID !== openedTabInfo?.tabID && inputNotEmpty && !isVoiceRecording)
+            (previousTabRef.current && previousTabRef.current?.tabID !== openedTabInfo?.tabID && inputNotEmpty && !isVoiceRecording)
             ||
             !showChatBox
         ) {

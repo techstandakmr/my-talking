@@ -148,39 +148,35 @@ function TextChat({ textData }) {
   return (
     safeParseJSON(textData)?.map((part, index) => {
       // Handle emoji rendering
-      if (part.type === 'emoji') {
-        return <img className={`${part?.highlight ? "highlight" : ""} not_prevent_select emoji_img`} key={index} src={part?.url} alt={part?.value} />;
+      if (part?.type === 'emoji') {
+        return <img className={`not_prevent_select emoji_img`} key={index} src={part?.url} alt={part?.value} />;
       }
 
       // Handle new line breaks
-      if (part.type === 'newline') {
+      if (part?.type === 'newline') {
         return <br className="not_prevent_select" key={index} />;
       }
 
       // Handle text chats
-      if (part.type === 'text') {
-        let formattedText = part.value; // The actual text content
+      if (part?.type === 'text') {
+        let formattedText = part?.value; // The actual text content
         let styleObj = {}; // Object to hold inline styles
 
         // Apply text formatting styles
-        part.format?.forEach((style) => {
-          if (style.includes('color:')) {
-            styleObj.color = style.split(':')[1];
-          }
+        part?.format?.forEach((style) => {
           if (style === 'bold') styleObj.fontWeight = 'bold';
           if (style === 'italic') styleObj.fontStyle = 'italic';
           if (style === 'underline') styleObj.textDecoration = 'underline';
           if (style === 'strikethrough') styleObj.textDecoration = 'line-through';
-          if (style.startsWith('align-')) styleObj.textAlign = style.split('-')[1];
         });
 
         // Wrap text in a span with styles
-        let textElement = <span className={`${part?.highlight ? "highlight" : ""} `} style={styleObj} key={index}>{formattedText}</span>;
+        let textElement = <span style={styleObj} key={index}>{formattedText}</span>;
 
         // If the text is a link, wrap it in an anchor tag
-        if (part.isLink) {
+        if (part?.isLink) {
           textElement = (
-            <a href={formattedText} target="_blank" className={`${part?.highlight ? "highlight" : ""} url-link`} key={index}>
+            <a href={formattedText} target="_blank" className={`url-link`} key={index}>
               {formattedText}
             </a>
           );
@@ -601,7 +597,8 @@ function ChatBox() {
       holdTimeoutRef.current = null;
     }
   };
-  // move to the end
+  // chat selection - end
+  // move to the end of chat box area
   useEffect(() => {
     if (chatBoxRef.current) {
       chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
@@ -684,7 +681,6 @@ function ChatBox() {
   useEffect(() => {
     if (showChatBox) {
       // Get current tab info from recent chats (based on tab ID)
-      // let tabInfo = currentUserData?.recentChatsTabs?.find((tab) => tab?.tabID == openedTabInfo?.tabID);
       // Check if there are unread messages in this chat
       if (getUnreadChats(currentUserID, allUniqueChats, openedTabInfo)?.length > 0) {
         setUnreadChats(getUnreadChats(currentUserID, allUniqueChats, openedTabInfo) || []);

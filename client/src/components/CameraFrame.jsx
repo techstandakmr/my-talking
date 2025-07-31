@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { BsCamera, BsXCircle } from "react-icons/bs";
 import { UserContext } from '@context/UserContext';
 

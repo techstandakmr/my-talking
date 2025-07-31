@@ -59,7 +59,6 @@ function ProfileTab({
             {/* Profile information section */}
             <div className={`ml-2 text-left w-full profileTabInfo`} style={{
                 // Adjust padding based on the presence of 'about' or 'description'
-                // width: '85%',
                 padding: (tabData?.profileInfo?.about == null && !tabData?.profileInfo?.description) ? "18px 0px" : "8px 0px"
             }}>
                 {/* User name section */}
@@ -184,7 +183,7 @@ function ContactList() {
     const [showPendingConnections, setShowPendingConnections] = useState(false);
     const [showNonConnectionsUsers, setShowNonConnectionsUsers] = useState(false);
     const [showConnectionsNotifications, setShowConnectionsNotifications] = useState(false);
-    const wasInNotificationView = useRef(false);
+    const wasUserInNotificationView = useRef(false);
     // All setters for showing connection sections
     const allShowingSettersOfConnections = [
         setShowAcceptedConnections,
@@ -237,16 +236,16 @@ function ContactList() {
     // update accepted connections seen by initiator 
     useEffect(() => {
         if (showConnectionsNotifications) {
-            wasInNotificationView.current = true;
+            wasUserInNotificationView.current = true;
         };
         // When user switches away from notifications area
         if (
-            wasInNotificationView.current &&
+            wasUserInNotificationView.current &&
             !showConnectionsNotifications &&
             (showAcceptedConnections || showPendingConnections || showNonConnectionsUsers || showChatBox)
         ) {
             readNewAcceptedConnections();
-            wasInNotificationView.current = false; // reset after calling
+            wasUserInNotificationView.current = false; // reset after calling
         }
     }, [showChatBox, showAcceptedConnections, showPendingConnections, showNonConnectionsUsers, showConnectionsNotifications]);
     // Function to get users data based on connection visibility states
@@ -332,7 +331,7 @@ function ContactList() {
         });
         return sourceData?.length > 0 ? [{ sourceData, letter }] : [];
     });
-    function openeTheTab(tabID, tabType) {
+    function openeTheUserTab(tabID, tabType) {
         const existingTab = currentUserData?.recentChatsTabs?.find(tab => tab?.tabID === tabID);
         setOpenedTabInfo(
             existingTab
@@ -356,7 +355,7 @@ function ContactList() {
         return (
             <div onClick={(e) => {
                 if (!isSelecting) {
-                    openeTheTab(tabData?._id, "user");
+                    openeTheUserTab(tabData?._id, "user");
                 } else {
                     // except the current user
                     if (tabData?._id != currentUserID) {
@@ -658,7 +657,7 @@ function ContactList() {
                         showAcceptedConnections &&
                         <>
                             <button className={`${activeDarkMode ? "darkModeBg2" : ''} profileTab flex items-center justify-start w-full border-b border-gray-200`} onClick={() => {
-                                openeTheTab(currentUserID, "user");
+                                openeTheUserTab(currentUserID, "user");
                             }}>
                                 <ProfileTab
                                     tabData={currentUserData}
@@ -668,7 +667,7 @@ function ContactList() {
                             </button>
                             {/* show ai assistant tab */}
                             <button className={`${activeDarkMode ? "darkModeBg2" : ''} profileTab flex items-center justify-start w-full border-b border-gray-200`} onClick={() => {
-                                openeTheTab(aiAssistant?._id, "aiAssistant");
+                                openeTheUserTab(aiAssistant?._id, "aiAssistant");
                             }}>
                                 <ProfileTab
                                     tabData={aiAssistant}
@@ -796,7 +795,7 @@ function ContactList() {
                                 )?.map((connectionInfo) => {
                                     return (
                                         <button className={`${activeDarkMode ? "darkModeBg2" : ''} profileTab border-b border-gray-200 relative flex items-center justify-start w-full`} onClick={() => {
-                                            openeTheTab(
+                                            openeTheUserTab(
                                                 connectionInfo?.initiaterUserID == currentUserID ? connectionInfo?.targetUserID : connectionInfo?.initiaterUserID,
                                                 "user"
                                             );

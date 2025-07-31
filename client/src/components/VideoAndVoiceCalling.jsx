@@ -51,12 +51,6 @@ function VideoAndVoiceCalling() {
         isRunning.current = false; // Set timer as not running
     };
 
-    // Cleanup on Unmount
-    // useEffect(() => {
-    //     // startTimer(); // Optional: start timer on mount
-    //     return () => clearInterval(intervalRef.current); // Clear interval on component unmount
-    // }, []);
-
     // Format Time: Show HH:MM:SS only if hours exist
     const formatTime = (totalSeconds) => {
         const hours = Math.floor(totalSeconds / 3600);
@@ -110,7 +104,7 @@ function VideoAndVoiceCalling() {
         };
     }, []);
     // toggle screen 
-    function toggleVideoScreem() {
+    function toggleVideoScreen() {
         let smallScreen = document.getElementById("smallScreen");
         let fullScreen = document.getElementById("fullScreen");
         if (smallScreen.classList.contains("smallScreen")) {
@@ -743,7 +737,7 @@ function VideoAndVoiceCalling() {
                 </div>
                 {/* Show second small screen video when call is accepted and type is video */}
                 <div id="smallScreen" className="smallScreen" style={{ display: (currentCallData?.status == 'accepted' && currentCallData?.callType == "video") ? "block" : "none" }} onClick={() => {
-                    toggleVideoScreem();
+                    toggleVideoScreen();
                 }}>
                     {/* Remote video stream (side view) */}
                     <video
@@ -801,7 +795,7 @@ function VideoAndVoiceCalling() {
                     }
                 </div>
                 <div id="fullScreen" className={`fullScreen ${activeDarkMode ? "darkModeBg2" : ''}`} onClick={() => {
-                    toggleVideoScreem();
+                    toggleVideoScreen();
                 }}>
                     {/* Local video stream, visible only when call type is video */}
                     <video

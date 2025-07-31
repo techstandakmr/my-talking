@@ -144,6 +144,7 @@ function CallsList() {
 
     function callsDataByDate(allUniqueCallsData) {
         return [
+            // store unique dates from calls as labels
             ...new Set(
                 (
                     openedUser == null ?
@@ -175,7 +176,6 @@ function CallsList() {
             };
         });
     };
-    console.log("AAAAAAA", callsDataByDate(allUniqueCallsData));
     // --- Calls data of opened user - start --- 
     function OpenedUserCalls() {
         return (

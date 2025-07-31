@@ -140,8 +140,6 @@ function ProfileInfo() {
     // Show/hide audio files in media details
     const [showAudios, setShowAudios] = useState(false);
 
-    // // Show/hide documents in media details
-    // const [showDocuments, setShowDocuments] = useState(false);
     // Show/hide links in media details
     const [showLinks, setShowLinks] = useState(false);
 
@@ -153,9 +151,6 @@ function ProfileInfo() {
 
     // Show/hide profile information section (name, about, description, members)
     const [showProfileInformation, setShowProfileInformation] = useState(false);
-
-    // Show/hide personal information section
-    const [showPersonalInfo, setShowPersonalInfo] = useState(false);
 
     // Store data related to profile picture changes
     const [profilePicInfo, setProfilePicInfo] = useState(null);
@@ -1272,13 +1267,6 @@ function ProfileInfo() {
                 }
             </div>
         )
-    };
-    function truncateMembers(members, limit = 4) {
-        // If members exceed limit, show first 'limit' members followed by '...'
-        return members.length > limit
-            ? members.slice(0, limit).join(', ') + '...'
-            // Otherwise, join all members with comma
-            : members.join(', ');
     };
     // Function to handle incoming WebSocket messages related to the profile settings
     // This is used to hide the loading animation and show a success toast when a setting change is successful
@@ -2415,9 +2403,6 @@ function ProfileInfo() {
                                                                                             if (isAudioFile(fileInfo?.fileType)) {
                                                                                                 handleShowingSectionInMedia(setShowAudios);
                                                                                             };
-                                                                                            // if (isDocumentFile(fileInfo?.fileType)) {
-                                                                                            //     handleShowingSectionInMedia(setShowDocuments);
-                                                                                            // };
                                                                                             if (isImageFile(fileInfo?.fileType)) {
                                                                                                 handleShowingSectionInMedia(setShowPhotos);
                                                                                             };
@@ -2725,15 +2710,6 @@ function ProfileInfo() {
                                                             <IoMusicalNotes className="w-5 h-5 cursor-pointer" />
                                                         </div>
 
-                                                        {/* Documents tab */}
-                                                        {/* <div onClick={() => {
-                                                            handleShowingSectionInMedia(setShowDocuments);
-                                                        }} style={{
-                                                            borderColor: showDocuments ? "rgba(0, 135, 255, 0.5)" : 'transparent',
-                                                        }} className="navMediaTab flex items-center justify-center p-4 w-full border-b-2 border-gray-200 flex-col cursor-pointer">
-                                                            <HiDocument className="w-5 h-5 cursor-pointer" />
-                                                        </div> */}
-
                                                         {/* Links tab */}
                                                         <div onClick={() => {
                                                             handleShowingSectionInMedia(setShowLinks);
@@ -2749,7 +2725,7 @@ function ProfileInfo() {
                                     }
 
                                     {
-                                        // Show media items based on selected type (photos, videos, audios, documents)
+                                        // Show media items based on selected type (photos, videos, audios)
                                         showMediaChats && (showPhotos || showVideos || showAudios) &&
                                         <MediaChats
                                             typeCheck={
