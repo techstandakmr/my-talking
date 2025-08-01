@@ -37,7 +37,7 @@ class PeerService {
   }
 
   // Set local description from the answer received from remote peer
-  async setLocalDescription(ans) {
+  async setRemoteAnswer(ans) {
     if (this.peer) {
       // Set remote description with received answer
       await this.peer.setRemoteDescription(new RTCSessionDescription(ans));

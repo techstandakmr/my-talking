@@ -134,8 +134,6 @@ function VideoAndVoiceCalling() {
                     peer.peer.addTrack(track, localStream); // Add track to peer connection if not already added
                 };
             });
-        } else {
-            //show network problem , please try again
         };
     };
 
@@ -197,7 +195,7 @@ function VideoAndVoiceCalling() {
     // Handle completion of renegotiation process
     const handleNegoDone = async (currentCallData) => {
         let { ans } = currentCallData;
-        await peer.setLocalDescription(ans); // Apply local description from answer
+        await peer.setRemoteAnswer(ans); // Apply local description from answer
     };
 
     useEffect(() => {
@@ -259,7 +257,7 @@ function VideoAndVoiceCalling() {
         if (remoteStream) {
             remoteStream.getTracks().forEach(track => track.stop()); // Stop remote tracks
         };
-        // peer.peer.close(); // Close peer connection (commented out)
+        peer.peer.close(); // Close peer connection (commented out)
         // peer.peer = peer.createPeer(); // Reinitialize peer connection for next call (commented out)
     };
 
@@ -411,13 +409,12 @@ function VideoAndVoiceCalling() {
                 };
             });
             // Set the local SDP description with the answer from remote peer
-            await peer.setLocalDescription(callData?.ans);
+            await peer.setRemoteAnswer(callData?.ans);
             // After a delay, send local media streams and start the call timer
             setTimeout(() => {
                 sendStreams();
                 startTimer();
             }, 1000);
-            // await sendStreams(); // This ensures that tracks are sent after the call is accepted
         };
 
         // Handle toggling of remote audio stream (mute/unmute)
@@ -546,8 +543,6 @@ function VideoAndVoiceCalling() {
     };
 
     useEffect(() => {
-        // Select the floating video element for side view
-        const viewOnSideElements = document.querySelectorAll(".callingComponent .viewOnSide, .callingComponent  .smallScreen");
         const viewOnSideElement = document.querySelector(".callingComponent .viewOnSide");
         if (viewOnSideElement) {
             let isTouch = false;
