@@ -124,7 +124,7 @@ function Stories() {
                 if (previousStories.some((prevStoryFilter) => prevStoryFilter.customID === prevStory.customID)) {
                     return {
                         ...prevStory,
-                        width: 100, // Mark previous stories as fully watched
+                        progressBarWidth: 100, // Mark previous stories as fully watched
                         watched: prevStory?.watched, // Keep existing watched status
                         currentStory: false,
                         goingToFullView: true
@@ -134,14 +134,14 @@ function Stories() {
                     return {
                         ...prevStory,
                         currentStory: true,
-                        width: 0, // Mark previous stories as fully watched
+                        progressBarWidth: 0, // Mark previous stories as fully watched
                         watched: false, // Keep existing watched status
                         goingToFullView: true
                     };
                 };
                 return {
                     ...prevStory,
-                    width: 0, // Collapse width for unviewed stories
+                    progressBarWidth: 0, // Collapse progressBarWidth for unviewed stories
                     watched: false,
                     currentStory: false,
                     goingToFullView: true

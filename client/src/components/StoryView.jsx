@@ -80,8 +80,6 @@ function StoryView({
     110: "mini2Tall",
     auto: "audio"
   };
-  // Story width for progress bar
-  const [width, setWidth] = useState(0);
   // Ref for video element
   const videoRef = useRef(null);
 
@@ -121,11 +119,10 @@ function StoryView({
     setAllStoriesData((prevStories) =>
       prevStories.map((story) => ({
         ...story,
-        width: 0,
+        progressBarWidth: 0,
         watching: false,
         currentStory: false,
         goingToFullView: false
-        // watched: false,
       }))
     );
   }
@@ -133,7 +130,7 @@ function StoryView({
   // Monitor changes in storiesForView and close viewer if all stories are hidden
   useEffect(() => {
     let isAllWatched = storiesForView?.every((storyData) =>
-      !storyData?.goingToFullView && storyData?.width == 0 && !storyData?.watching && !storyData?.currentStory
+      !storyData?.goingToFullView && storyData?.progressBarWidth == 0 && !storyData?.watching && !storyData?.currentStory
     );
     let currentStory = storiesForView?.find((story) => story?.currentStory == true);
     if (isAllWatched || storiesForView.length == 0 || [null, undefined]?.includes(getSingleStoryData(currentStory?.customID))) {
@@ -198,10 +195,10 @@ function StoryView({
   };
 
   // Update progress bar width
-  const updateStoryWidth = (customID, width) => {
+  const updateStoryWidth = (customID, progressBarWidth) => {
     setAllStoriesData((prev) =>
       prev.map((story) =>
-        story.customID === customID ? { ...story, width } : story
+        story.customID === customID ? { ...story, progressBarWidth } : story
       )
     );
   };
@@ -232,17 +229,16 @@ function StoryView({
   // Track video playback and update progress
   const handleTimeUpdate = () => {
     if (!isPaused) {
-      let width = (video?.currentTime / video?.duration) * 100;
-      setWidth(width);
+      let progressBarWidth = (video?.currentTime / video?.duration) * 100;
       updateStoryWidth(
-        storiesForView?.find((story) => story?.currentStory == true)?.customID, width
+        storiesForView?.find((story) => story?.currentStory == true)?.customID, progressBarWidth
       );
-      if (width > 75) {
+      if (progressBarWidth > 75) {
         markStoryAsWatched(
           storiesForView?.find((story) => story?.currentStory == true)?.customID
         )
       };
-      if (width == 100) {
+      if (progressBarWidth == 100) {
         moveToNextStory(
           storiesForView.findIndex((story) => story?.currentStory == true)
         )
@@ -270,20 +266,20 @@ function StoryView({
       const storyDuration = isStoryImage || storyType === "text" ? 3000 : convertToMilliseconds(mediaInfo?.fileDuration);
       const minWatchTime = isStoryImage || storyType === "text" ? 2000 : storyDuration / 2;
 
-      let width = currentStoryClone?.width || 0;
+      let progressBarWidth = currentStoryClone?.progressBarWidth || 0;
       const increment = (100 / storyDuration) * 50;
       if (!isPaused) {
         if (!isStoryVideo && !isStoryAudio) {
           videoRef.current = null;
           // Start story auto-play and progress
           timerRef.current = setInterval(() => {
-            width += increment;
-            if (width >= 100) {
-              width = 100;
+            progressBarWidth += increment;
+            if (progressBarWidth >= 100) {
+              progressBarWidth = 100;
               clearInterval(timerRef.current);
               moveToNextStory(currentIndex);
             }
-            updateStoryWidth(currentStoryClone.customID, width);
+            updateStoryWidth(currentStoryClone.customID, progressBarWidth);
           }, 50);
 
           // Track view time
@@ -297,7 +293,7 @@ function StoryView({
           // Set timeout to move to next
           storyTimeoutRef.current = setTimeout(() => {
             moveToNextStory(currentIndex);
-          }, storyDuration * ((100 - width) / 100));
+          }, storyDuration * ((100 - progressBarWidth) / 100));
         };
       };
 
@@ -343,12 +339,12 @@ function StoryView({
       setAllStoriesData((prev) =>
         prev.map((prevStory, idx) => {
           if (previousStories.some((prevStoryFilter) => prevStoryFilter.customID === prevStory.customID)) {
-            return { ...prevStory, width: 100, watched: prevStory.watched, currentStory: false };
+            return { ...prevStory, progressBarWidth: 100, watched: prevStory.watched, currentStory: false };
           };
           if (prevStory.customID == clickedStory?.customID) {
-            return { ...prevStory, width: 0, watched: false, currentStory: true };
+            return { ...prevStory, progressBarWidth: 0, watched: false, currentStory: true };
           };
-          return { ...prevStory, width: 0, watched: false, currentStory: false };
+          return { ...prevStory, progressBarWidth: 0, watched: false, currentStory: false };
         })
       );
       setShowViewedByPanel(false);
@@ -556,7 +552,7 @@ function StoryView({
                 <div className='px-0 storyLength w-full'>
                   {/* Progress bar for each story */}
                   {storiesForView?.map((story, idx) => {
-                    const progressWidth = `${story?.width || 0}%`;
+                    const progressWidth = `${story?.progressBarWidth || 0}%`;
 
                     return (
                       <div
@@ -830,32 +826,6 @@ function StoryView({
                     }}
                     setTargetChatForReplyOrEdit={setTargetStoryForReplyOrEdit}
                   />
-
-                  {/* Emoji reactions */}
-                  {/* <div className={`show reactionEmojiContainerInStory`}>
-                    {
-                      reactionEmojis?.map((emoji, idx) => {
-                        return <img
-                          key={idx}
-                          contentEditable="false"
-                          className='cursor-pointer reactionEmojiImg not_prevent_select'
-                          src={`https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/${emoji.image}`}
-                          alt={`${emoji.image}`}
-                          onClick={() => {
-                            sendSingleChat(
-                              { tabType: "user", tabID: storiesForView?.find((story) => story?.currentStory == true)?.senderID },
-                              "text",
-                              [{ type: "emoji", value: "emoji", url: `uploads/emoji/${emoji.image}` }],
-                              {
-                                repliedToID: storiesForView.find((story) => story?.currentStory == true)?.customID,
-                                repliedToType: "story"
-                              }
-                            );
-                          }}
-                        />
-                      })
-                    }
-                  </div> */}
                 </div>
               }
             </div>
@@ -909,7 +879,7 @@ function StoryView({
                             min="0"
                             step="0.1"
                             defaultValue="0"
-                            value={storiesForView?.find((story) => story?.currentStory == true)?.width || 0}
+                            value={storiesForView?.find((story) => story?.currentStory == true)?.progressBarWidth || 0}
                             onChange={(event) => {
                               const parseDuration = (formatted) => {
                                 const parts = formatted.split(':').map(Number);

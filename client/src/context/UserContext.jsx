@@ -3157,7 +3157,7 @@ function UserContextProvider({ children }) {
                     if (index !== -1) {
                         // Story exists, update it
                         return prevStories.map(story =>
-                            story.customID === newStoryData.customID ? { ...story, ...newStoryData, watched: false, width: 0 } : story
+                            story.customID === newStoryData.customID ? { ...story, ...newStoryData, watched: false, progressBarWidth: 0 } : story
                         );
                     } else {
                         // New story, add it
