@@ -2063,7 +2063,7 @@ ol {
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.9);
     color: white;
-    z-index: 9999999;
+    z-index: 999;
     overflow: hidden;
     padding: 20px 0px;
 }
