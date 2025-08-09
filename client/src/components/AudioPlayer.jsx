@@ -1,8 +1,8 @@
-import React, { useState, useContext, useRef,memo  } from 'react';
+import React, { useState, useContext, useRef, memo } from 'react';
 import { HiPlay, HiPause } from 'react-icons/hi2';
 import { ProgressBar } from "./index.js";
 import { UserContext } from '@context/UserContext';
-const AudioPlayer = memo(({ fileInfo, showIcon })=>{
+const AudioPlayer = memo(({ fileInfo, showIcon }) => {
     // Reference to the video element
     const audioRef = useRef(null);
     // Reference to the progress bar input element
@@ -109,6 +109,13 @@ const AudioPlayer = memo(({ fileInfo, showIcon })=>{
                             step="0.1"
                             defaultValue="0"
                             className="w-full progress-bar"
+                            onChange={(e) => {
+                                const audio = audioRef.current;
+                                if (audio) {
+                                    audio.currentTime = e.target.value; // Update current time based on slider value
+                                    setCurrentTime(formatTime(e.target.value)); // Update displayed time
+                                }
+                            }}
                         />
                     </div>
 
@@ -134,6 +141,6 @@ const AudioPlayer = memo(({ fileInfo, showIcon })=>{
             </div>
         </React.Fragment>
     );
-},[]);
+}, []);
 
 export default AudioPlayer;
