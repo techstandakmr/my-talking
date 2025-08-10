@@ -1,8 +1,8 @@
-import React, { useState, useContext, useRef, memo } from 'react';
+import React, { useState, useContext, useRef  } from 'react';
 import { HiPlay, HiPause } from 'react-icons/hi2';
 import { ProgressBar } from "./index.js";
 import { UserContext } from '@context/UserContext';
-const AudioPlayer = memo(({ fileInfo, showIcon }) => {
+const AudioPlayer = ({ fileInfo, showIcon })=>{
     // Reference to the video element
     const audioRef = useRef(null);
     // Reference to the progress bar input element
@@ -141,6 +141,6 @@ const AudioPlayer = memo(({ fileInfo, showIcon }) => {
             </div>
         </React.Fragment>
     );
-}, []);
+};
 
 export default AudioPlayer;
