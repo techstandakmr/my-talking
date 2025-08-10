@@ -206,7 +206,7 @@ function File() {
                             sizeType: 'audio',
                             orgWidth: 'auto',
                             orgHeight: 'auto',
-                            fileDuration: formatTime(fileInfo?.fileDuration || duration),
+                            fileDuration: formatTime(duration || fileInfo?.fileDuration),
                             fileIcon: fileIcon(fileInfo?.fileType),
                             formattedFileSize: formatFileSize(fileInfo?.fileSize),
                         });
