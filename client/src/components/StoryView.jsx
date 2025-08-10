@@ -80,6 +80,8 @@ function StoryView({
     110: "mini2Tall",
     auto: "audio"
   };
+  // Story width for progress bar
+  const [width, setWidth] = useState(0);
   // Ref for video element
   const videoRef = useRef(null);
 
@@ -89,14 +91,11 @@ function StoryView({
   // Ref to manage interval for story duration
   const timerRef = useRef(null);
 
-  // Ref for timeout to move to next story
-  const storyTimeoutRef = useRef(null);
-
   // Ref to track actual watch time
   const viewingTimerRef = useRef(null);
 
-  // Accumulated viewing time
-  const viewingTimeRef = useRef(0);
+  // Accumulated viewed time
+  const viewedTimeRef = useRef(0);
 
   function formatStoryTime(time) {
     const now = new Date();
@@ -119,18 +118,19 @@ function StoryView({
     setAllStoriesData((prevStories) =>
       prevStories.map((story) => ({
         ...story,
-        progressBarWidth: 0,
+        width: 0,
         watching: false,
         currentStory: false,
         goingToFullView: false
+        // watched: false,
       }))
     );
   }
 
-  // Monitor changes in storiesForView and close viewer if all stories are hidden
+  // Monitor changes in storiesForView and close viewer if all stories are watched
   useEffect(() => {
     let isAllWatched = storiesForView?.every((storyData) =>
-      !storyData?.goingToFullView && storyData?.progressBarWidth == 0 && !storyData?.watching && !storyData?.currentStory
+      !storyData?.goingToFullView && storyData?.width == 0 && !storyData?.watching && !storyData?.currentStory
     );
     let currentStory = storiesForView?.find((story) => story?.currentStory == true);
     if (isAllWatched || storiesForView.length == 0 || [null, undefined]?.includes(getSingleStoryData(currentStory?.customID))) {
@@ -195,10 +195,10 @@ function StoryView({
   };
 
   // Update progress bar width
-  const updateStoryWidth = (customID, progressBarWidth) => {
+  const updateStoryWidth = (customID, width) => {
     setAllStoriesData((prev) =>
       prev.map((story) =>
-        story.customID === customID ? { ...story, progressBarWidth } : story
+        story.customID === customID ? { ...story, width } : story
       )
     );
   };
@@ -216,7 +216,7 @@ function StoryView({
           return { ...prevStory, currentStory: false };
         })
       );
-      viewingTimeRef.current = 0;
+      viewedTimeRef.current = 0;
       deleteExpiredChats();
       deleteExpiredStories();
     } else {
@@ -229,16 +229,17 @@ function StoryView({
   // Track video playback and update progress
   const handleTimeUpdate = () => {
     if (!isPaused) {
-      let progressBarWidth = (video?.currentTime / video?.duration) * 100;
+      let width = (video?.currentTime / video?.duration) * 100;
+      setWidth(width);
       updateStoryWidth(
-        storiesForView?.find((story) => story?.currentStory == true)?.customID, progressBarWidth
+        storiesForView?.find((story) => story?.currentStory == true)?.customID, width
       );
-      if (progressBarWidth > 75) {
+      if (width > 75) {
         markStoryAsWatched(
           storiesForView?.find((story) => story?.currentStory == true)?.customID
         )
       };
-      if (progressBarWidth == 100) {
+      if (width == 100) {
         moveToNextStory(
           storiesForView.findIndex((story) => story?.currentStory == true)
         )
@@ -266,40 +267,34 @@ function StoryView({
       const storyDuration = isStoryImage || storyType === "text" ? 3000 : convertToMilliseconds(mediaInfo?.fileDuration);
       const minWatchTime = isStoryImage || storyType === "text" ? 2000 : storyDuration / 2;
 
-      let progressBarWidth = currentStoryClone?.progressBarWidth || 0;
+      let width = currentStoryClone?.width || 0;
       const increment = (100 / storyDuration) * 50;
       if (!isPaused) {
         if (!isStoryVideo && !isStoryAudio) {
           videoRef.current = null;
           // Start story auto-play and progress
           timerRef.current = setInterval(() => {
-            progressBarWidth += increment;
-            if (progressBarWidth >= 100) {
-              progressBarWidth = 100;
+            width += increment;
+            if (width >= 100) {
+              width = 100;
               clearInterval(timerRef.current);
               moveToNextStory(currentIndex);
             }
-            updateStoryWidth(currentStoryClone.customID, progressBarWidth);
+            updateStoryWidth(currentStoryClone.customID, width);
           }, 50);
 
           // Track view time
           viewingTimerRef.current = setInterval(() => {
-            viewingTimeRef.current += 50;
-            if (viewingTimeRef.current >= minWatchTime) {
+            viewedTimeRef.current += 50;
+            if (viewedTimeRef.current >= minWatchTime) {
               markStoryAsWatched(currentStoryClone.customID);
             }
           }, 50);
-
-          // Set timeout to move to next
-          storyTimeoutRef.current = setTimeout(() => {
-            moveToNextStory(currentIndex);
-          }, storyDuration * ((100 - progressBarWidth) / 100));
         };
       };
 
       return () => {
         clearInterval(timerRef.current);
-        clearTimeout(storyTimeoutRef.current);
         clearInterval(viewingTimerRef.current);
       };
     } else {
@@ -322,7 +317,6 @@ function StoryView({
       };
       setIsPaused(true);
       clearInterval(timerRef.current);
-      clearTimeout(storyTimeoutRef.current);
       clearInterval(viewingTimerRef.current);
     }
   };
@@ -339,16 +333,16 @@ function StoryView({
       setAllStoriesData((prev) =>
         prev.map((prevStory, idx) => {
           if (previousStories.some((prevStoryFilter) => prevStoryFilter.customID === prevStory.customID)) {
-            return { ...prevStory, progressBarWidth: 100, watched: prevStory.watched, currentStory: false };
+            return { ...prevStory, width: 100, watched: prevStory.watched, currentStory: false };
           };
           if (prevStory.customID == clickedStory?.customID) {
-            return { ...prevStory, progressBarWidth: 0, watched: false, currentStory: true };
+            return { ...prevStory, width: 0, watched: false, currentStory: true };
           };
-          return { ...prevStory, progressBarWidth: 0, watched: false, currentStory: false };
+          return { ...prevStory, width: 0, watched: false, currentStory: false };
         })
       );
       setShowViewedByPanel(false);
-      viewingTimeRef.current = 0;
+      viewedTimeRef.current = 0;
     }
   };
 
@@ -359,7 +353,6 @@ function StoryView({
         if (!isPaused) {
           setIsPaused(true);
           clearInterval(timerRef.current);
-          clearTimeout(storyTimeoutRef.current);
           clearInterval(viewingTimerRef.current);
         };
       };
@@ -379,11 +372,12 @@ function StoryView({
     let storyControllerTop = document.querySelector(".storyControllerTop");
     let storyControllerBottom = document.querySelector(".storyControllerBottom");
     let viewedByContainer = document.querySelector('.viewedByContainer');
-
+    let progressBar = document.querySelector('.progress-bar') || null;
     // Determine if the click is outside the excluded elements
     let toMove = !storyControllerTop?.contains(e.target) &&
       !storyControllerBottom?.contains(e.target) &&
-      !viewedByContainer?.contains(e.target);
+      !viewedByContainer?.contains(e.target) &&
+      !progressBar?.contains(e.target);
 
     if (toMove) {
       // Get current screen width and click X position
@@ -552,7 +546,7 @@ function StoryView({
                 <div className='px-0 storyLength w-full'>
                   {/* Progress bar for each story */}
                   {storiesForView?.map((story, idx) => {
-                    const progressWidth = `${story?.progressBarWidth || 0}%`;
+                    const progressWidth = `${story?.width || 0}%`;
 
                     return (
                       <div
@@ -863,7 +857,7 @@ function StoryView({
                             src={`${storiesForView?.find((story) => story?.currentStory == true)?.mediaFile?.fileURL}`}
                             className={`w-full h-full rounded-md ${storiesForView?.find((story) => story?.currentStory == true)?.mediaFile?.fileType?.startsWith("audio/") && "hidden"} `}
                             onTimeUpdate={handleTimeUpdate}
-                            autoPlay
+                            autoPlay={!isPaused}
                           />
                           <div>
 
@@ -879,7 +873,7 @@ function StoryView({
                             min="0"
                             step="0.1"
                             defaultValue="0"
-                            value={storiesForView?.find((story) => story?.currentStory == true)?.progressBarWidth || 0}
+                            value={storiesForView?.find((story) => story?.currentStory == true)?.width || 0}
                             onChange={(event) => {
                               const parseDuration = (formatted) => {
                                 const parts = formatted.split(':').map(Number);
@@ -900,6 +894,7 @@ function StoryView({
                                 (story) => story?.currentStory == true
                               );
                               if (currentStory) {
+                                console.log("parseFloat(event.target.value)",parseFloat(event.target.value))
                                 const newProgress = parseFloat(event.target.value); // width as percentage (0–100)
                                 if (videoRef.current) {
                                   const totalDurationInSeconds = parseDuration(currentStory?.mediaFile?.fileDuration);
