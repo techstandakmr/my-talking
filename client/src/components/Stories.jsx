@@ -124,7 +124,7 @@ function Stories() {
                 if (previousStories.some((prevStoryFilter) => prevStoryFilter.customID === prevStory.customID)) {
                     return {
                         ...prevStory,
-                        progressBarWidth: 100, // Mark previous stories as fully watched
+                        width: 100, // Mark previous stories as fully watched
                         watched: prevStory?.watched, // Keep existing watched status
                         currentStory: false,
                         goingToFullView: true
@@ -134,14 +134,14 @@ function Stories() {
                     return {
                         ...prevStory,
                         currentStory: true,
-                        progressBarWidth: 0, // Mark previous stories as fully watched
+                        width: 0, // Mark previous stories as fully watched
                         watched: false, // Keep existing watched status
                         goingToFullView: true
                     };
                 };
                 return {
                     ...prevStory,
-                    progressBarWidth: 0, // Collapse progressBarWidth for unviewed stories
+                    width: 0, // Collapse width for unviewed stories
                     watched: false,
                     currentStory: false,
                     goingToFullView: true
@@ -817,36 +817,38 @@ function Stories() {
                             {/* Header section with back button and title */}
                             <div className='p-2 pb-0 w-full flex items-center justify-between mb-2'>
                                 <div className="flex items-center gap-x-2">
-                                    {/* Back arrow icon to close the story list and reset states */}
-                                    <BsArrowLeft
-                                        onClick={() => {
-                                            setShowStoriesList(false); // Hide story list view
-                                            setCurrentStoriesListSender(null); // Reset selected story sender
-                                            setShowStoriesList(false); // Redundant reset to false
-                                            refereshStoriesSelecting(); // Refresh story selection state
-                                        }}
-                                        className='w-7 h-7 cursor-pointer text-gray-white' />
 
                                     {/* Display story title: either "My Story" or sender's name with emoji handling */}
                                     {
                                         !isStorySelecting ?
-                                            <p className="text-xl">
-                                                {
-                                                    filteredStoriesList(currentStoriesListSender, currentUserID)[0]?.senderID == currentUserID ? "My Story"
-                                                        :
-                                                        <TextWithEmojis
-                                                            hide={true}
-                                                            textWidth={`auto`}
-                                                            areaName={'tabInfo'}
-                                                            textData={
-                                                                getSingleUserData(
-                                                                    filteredStoriesList(currentStoriesListSender, currentUserID)[0]?.senderID
-                                                                )?.profileInfo?.name
-                                                            }
-                                                            isSearching={false}
-                                                        />
-                                                }
-                                            </p>
+                                            <>
+                                                {/* Back arrow icon to close the story list and reset states */}
+                                                <BsArrowLeft
+                                                    onClick={() => {
+                                                        setShowStoriesList(false); // Hide story list view
+                                                        setCurrentStoriesListSender(null); // Reset selected story sender
+                                                        setShowStoriesList(false); // Redundant reset to false
+                                                        refereshStoriesSelecting(); // Refresh story selection state
+                                                    }}
+                                                    className='w-7 h-7 cursor-pointer text-gray-white' />
+                                                <p className="text-xl">
+                                                    {
+                                                        filteredStoriesList(currentStoriesListSender, currentUserID)[0]?.senderID == currentUserID ? "My Story"
+                                                            :
+                                                            <TextWithEmojis
+                                                                hide={true}
+                                                                textWidth={`auto`}
+                                                                areaName={'tabInfo'}
+                                                                textData={
+                                                                    getSingleUserData(
+                                                                        filteredStoriesList(currentStoriesListSender, currentUserID)[0]?.senderID
+                                                                    )?.profileInfo?.name
+                                                                }
+                                                                isSearching={false}
+                                                            />
+                                                    }
+                                                </p>
+                                            </>
                                             :
                                             // If in selection mode, show count of selected stories
                                             <div className='flex gap-x-1'>
