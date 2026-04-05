@@ -1,8 +1,8 @@
-﻿# 💬 My Talking
+# 💬 My Talking
 
 **My Talking** is a real-time, full-featured communication platform built using the MERN stack, WebRTC, and WebSocket. It supports secure user authentication, private and group messaging, media sharing, AI chat assistant, advanced privacy settings, dark mode, and much more.
 
-🌐 **Live App**: [https://my-talking.onrender.com](https://my-talking.onrender.com)
+🌐 **Live App**: [https://my-talking-web.onrender.com](https://my-talking-web.onrender.com)
 
 ---
 
@@ -143,7 +143,7 @@ Each privacy setting supports:
 
 ### Chats
 - Search messages in any chat  
-- Auto-draft search support
+- Auto-draft support
 
 ### Recent Chats
 - Search by `name`, `message`, `sender`, `receiver`  
@@ -171,3 +171,4 @@ Each privacy setting supports:
 - Message reactions  
 - Export chats/media  
 - Multi-language support
+- 
