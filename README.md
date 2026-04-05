@@ -154,16 +154,6 @@ Each privacy setting supports:
 
 ### Stories
 - Search by sender
-
----
-
-## 👤 Developer Info
-
-- **Author**: Abdul Kareem  
-- **GitHub**: [github.com/techstandakmr](https://github.com/techstandakmr)  
-- **LinkedIn**: [linkedin.com/in/abdulkareem-tech](https://linkedin.com/in/abdulkareem-tech)  
-- **Email**: [webplusappinfo@gmail.com](mailto:webplusappinfo@gmail.com)
-
 ---
 
 ## 📌 Future Enhancements
