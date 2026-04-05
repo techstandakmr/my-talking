@@ -481,13 +481,6 @@ function StoryView({
                         </s>
                       );
                       break;
-                    case 'unordered-list':
-                      formattedText = (
-                        <ul key={partIdx} style={styleObj}>
-                          <li>{formattedText}</li>
-                        </ul>
-                      );
-                      break;
                     default:
                       // Handle custom style array format
                       if (style.includes('[')) {
@@ -872,11 +865,10 @@ function StoryView({
                             type="range"
                             min="0"
                             step="0.1"
-                            defaultValue="0"
                             value={storiesForView?.find((story) => story?.currentStory == true)?.width || 0}
                             onChange={(event) => {
                               const parseDuration = (formatted) => {
-                                const parts = formatted.split(':').map(Number);
+                                const parts = formatted?.split(':')?.map(Number);
                                 if (parts.length === 2) {
                                   // Format MM:SS
                                   const [minutes, seconds] = parts;
