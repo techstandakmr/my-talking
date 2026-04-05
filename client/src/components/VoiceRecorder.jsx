@@ -69,7 +69,6 @@ function VoiceRecorder() {
 
     // Function to start voice recording
     async function startVoiceRecording() {
-        resetVoiceRecTimer() // Reset timer before starting
         try {
             // Request audio stream from user microphone
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -146,7 +145,6 @@ function VoiceRecorder() {
                         };
 
                         // Stop and reset recording timer
-                        resetVoiceRecTimer();
                         setIsVoiceRecording(false);
                     } catch (err) {
                         console.error("Error detecting audio duration:", err);
@@ -185,12 +183,10 @@ function VoiceRecorder() {
 
         // Stop and reset timer and states
         stopVoiceRecTimer();
-        resetVoiceRecTimer();
         setIsVoiceRecording(false);
         setIsVoiceRecordingPaused(false);
         setVoiceMediaRecorder(null);
         setVoiceTimerInterval(null);
-        // setVoiceElapsedTime(0); // commented out reset elapsed time
     };
 
     // Function to stop voice recording manually
@@ -223,12 +219,6 @@ function VoiceRecorder() {
             clearInterval(voiceTimerInterval); // Clear the interval timer
             setVoiceTimerInterval(null);
         }
-    };
-
-    // Function to reset the timer (currently commented out)
-    function resetVoiceRecTimer() {
-        // setVoiceElapsedTime(0);
-        // document.getElementById('voice_rec_timer_display').textContent = "00:00";
     };
 
     // Function to start the timer and update elapsed time every second
